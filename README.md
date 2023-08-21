@@ -18,3 +18,15 @@ ejecutar en la terminal
 npm i 
 luego 
 npm run start
+
+#licencia
+mientras respetes los derechos de autor de este codigo, no tendre problemas
+no permito si se distribuye comercialmente sin permiso , simplemente si quieres usar algunos comandos tampoco tendre problemas
+
+cualquier duda o inquietud con referente a derechos de autor y demas puedes ir a mi servidor de discord
+
+https://discord.gg/seelyrandom
+
+
+#disclaimer
+cualquier derecho y demas sobre nekotina es originalmente a sus creador@s y cualquier duda sera atendida con respecto a esto mismo 
