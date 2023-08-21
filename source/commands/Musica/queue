@@ -1,0 +1,118 @@
+const lodash = require('lodash');
+const { MessageEmbed } = require('discord.js');
+
+module.exports = {
+    name: "queue",
+    aliases: ["cola", 'q'],
+    description: "Mira la cola de reproducción del servidor",
+    usage: "<prefix>queue",
+    /**
+     * @param {import("../../classes/Client")} client 
+     * @param {import("discord.js").Message} message 
+     * @param {String[]} args 
+     * @param {String} prefix
+     */
+    run: async (client, message, args, prefix) => {
+        
+        const player = await client.manager.get(message.guildId);
+
+        if (!player)
+            return message.reply({
+                content: '```nim\nNo hay nada en cola ;-;\n```'
+            })
+
+        if (!player.queue || !player.queue.length || player.queue == 0 || player.queue.length == 0) {
+            const live = player.queue.current.isStream
+                ? '● En vivo'
+                : `${client.utils.msToTime(player.position)} / ${client.utils.msToTime(player.queue.current.duration)}`;
+
+            const channel = client.channels.cache.get(player.voiceChannel)
+
+            return message.reply({
+                embeds: [
+                    {
+                        author: {
+                            iconURL: message.guild.iconURL({ dynamic: true }) || client.user.avatarURL(),
+                            name: `Cola de ${message.guild.name}`
+                        },
+                        description: [
+                            `**Reproduciendo**`,
+                            `[${player.queue.current.title}](${player.queue.current.uri || 'https://discord.com'}) \`${live}\` • ${player.queue.current.requester}`
+                        ].join('\n'),
+                        color: client.config.colors.pastel_green,
+                        thumbnail: {
+                            url: player.queue.current.thumbnail
+                        },
+                        fields: [
+                            {
+                                name: 'Canal de voz',
+                                value: `<#${player.voiceChannel}>`,
+                                inline: true
+                            },
+                            {
+                                name: 'Canal de texto',
+                                value: `<#${player.textChannel}>`,
+                                inline: true
+                            },
+                        ],
+                        footer: {
+                            text: `Autor: ${player.queue.current.author}`
+                        }
+                    }
+                ]
+            });
+        }
+
+        let songs = player.queue.map((t, i) => {
+            t.index = i;
+            return t;
+        });
+
+        let chunk = lodash.chunk(songs, 10);
+
+        let pages = chunk.map((t) => {
+            const description = t.map((track) =>
+                `\`${track.index + 1}.\` **${track.title}**\n${track.requester} • ${track.isStream ? 'En vivo' : client.utils.msToTime(track.duration)}`
+            ).join('\n\n')
+
+
+            const position = client.utils.msToTime(player.position);
+            const duration = client.utils.msToTime(player.queue.current.duration);
+
+            const buildtime = player.queue.current.isStream ? '• En vivo' : `${position} / ${duration}`;
+
+            const returned = new MessageEmbed()
+                .setColor(client.config.colors.pastel_green)
+                .setAuthor(`Cola de ${message.guild.name}`, message.guild.iconURL({ dynamic: true }) || client.user.avatarURL())
+                .setDescription([
+                    `**💿 Reproduciendo ahora**`,
+                    `[${player.queue.current.title}](${player.queue.current.uri || 'https://discord.com'}) \`${buildtime}\`\n${player.queue.current.requester} • ${buildtime}\n`,
+                    `**En espera**`,
+                    description
+                ].join('\n'))
+                .addFields([
+                    {
+                        name: 'Canal de voz',
+                        value: `<#${player.voiceChannel}>`,
+                        inline: true
+                    },
+                    {
+                        name: 'Canal de texto',
+                        value: `<#${player.textChannel}>`,
+                        inline: true
+                    }
+                ])
+
+            return returned;
+        });
+
+        let queuepage = isNaN(Number(args[0])) ? 1 : Number(args[0]);
+
+        if (queuepage + 1 > pages.length) queuepage = pages.length - 1;
+        if (queuepage + 1 < pages.length) queuepage = 0;
+
+        return message.reply({
+            embeds: [pages[queuepage].setFooter(`Página ${queuepage + 1} de ${pages.length}`)]
+        })
+    }
+}
