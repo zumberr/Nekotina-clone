@@ -1,4 +1,4 @@
-# Nekotinaclone
+# lenita
 Hace un año empece a hacer el codigo de este bot inspirado en nekotina de momento si recibe apoyo tratare de hacer las funciones de nekotina de economia
 
 # La idea 
