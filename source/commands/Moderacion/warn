@@ -1,0 +1,59 @@
+const database = require("quick.db")
+const { MessageEmbed } = require("discord.js");
+
+module.exports = {
+    name: "warn",
+    usage: "warn <@member | memberID> <Opcional | Razón>",
+    aliases: [""],
+    example: "warn @usuario1610 xD",
+    ownerOnly: false,
+    UserPerms: [""],
+    ClientPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
+    description: "Warnear a un usuario especificó.",
+    async run(client, message, args, prefix) {
+    try {
+    let member;
+    let reason;
+    let infraction;
+
+    member = await message.mentions.members.first() || message.guild.members.cache.get()
+    reason = args.slice(1).join(" ") || "No se ha proporcionado la razón.";
+    infraction = database.get(`warn_${message.guild.id}_${member.id}`)
+
+    if(!member) {
+        return message.reply({
+            embeds: [new MessageEmbed()
+            .setColor("#fbd9ff")
+            .setAuthor({ name: "Error Code: 2827" })
+            .setDescription(`No se ha proporcionado la mención/ID.\n\nUso correcto del comando:\n\` ${this.usage} \``)
+            ]
+        })
+    } else {
+        if(!infraction) {
+            infraction = []
+        }
+
+        infraction = database.push(`warn_${message.guild.id}_${member.id}`, {
+            type: "Advertencia/Warn",
+            reason: reason,
+            infractionID: infraction.length + 1,
+            moderator: message.author.id,
+            timestamp: Math.ceil(new Date() / 1000)
+        })
+
+        database.set((`warn_${message.guild.id}_${member.id}`), infraction);
+        
+    return message.reply({
+            embeds: [new MessageEmbed()
+            .setColor("#fbd9ff")
+            .setAuthor({ name: "Se ha creado una nueva infracción." })
+            .setDescription(`${member} ha sido advertido/warneado correctamente.`)
+            .addField("Información del Warneo", `Identificación del warneo: ${infraction.length}\nRazón del warneo: ${reason}\nModerador del warneo: <@${message.author.id}>\nFecha de creación del warneo: <t:${Math.ceil(new Date() / 1000)}:R>`)
+            ]
+        })
+    }
+    } catch(error) {
+       console.log(`${error} || ${this.name} || ${message} || ${message.author} || ${message.guild.name}`)
+        }
+    }
+}

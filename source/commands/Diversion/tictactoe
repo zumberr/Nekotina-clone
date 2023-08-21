@@ -1,0 +1,15 @@
+const [embed] = require("discord.js")
+
+module.exports = {
+    name:"tictactoe",
+    aliases: ["ttt","gato","3enraya","tateti"],
+    usage: "ttt @user",
+    description: "El clasico juego del tictactoe",
+    timeout:"10000",
+    UserPerms: ["SEND_MESSAGES"],
+    ClientPerms: ["SEND_MESSAGES"],
+    run: async(client, message, args, prefix)=>{
+        
+        
+    }
+}

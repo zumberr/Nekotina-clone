@@ -1,0 +1,117 @@
+const database = require("quick.db")
+const { MessageEmbed } = require("discord.js")
+
+module.exports = {
+    name: "welcome",
+    usage: "welcome <enable | disable | content | preview> <...>",
+    aliases: [""],
+    cooldown: 2,
+    example: "welcome enable #welcome | welcome content bienvenido al servidor | welcome preview", 
+    ownerOnly: false,
+    UserPerms: ["MANAGE_CHANNELS"],
+    ClientPerms: ["SEND_MESSAGES", "EMBED_LINKS", "MANAGE_CHANNELS"],
+    description: "Activar o desactivar el canal de bienvenidas del servidor.",
+    async run(client, message, args, prefix) {
+   try {
+    let format;
+    let channel;
+    format = args[0];
+    channel = await message.mentions.channels.first() || message.guild.channels.cache.get(args[1]);
+
+    if(!format) {
+        return message.reply({
+            embeds: [new MessageEmbed()
+            .setColor("#fbd9ff")
+            .setAuthor({ name: "Error Code: 4979" })
+            .setDescription(`No se ha proporcionado el formato.\n\nUso corecto del comando:\n\` ${this.usage} \``)
+            ]
+        })
+    } else if(format === "enable") {
+        if(!channel) {
+            return message.reply({
+                embeds: [new MessageEmbed()
+                .setColor("#fbd9ff")
+                .setAuthor({ name: "Error Code: 6101" })
+                .setDescription(`No se ha proporcionado la mención/ID del canal.\n\nUso corecto del comando:\n\` ${this.usage} \``)
+                ]
+            })
+        } else try {
+            await database.set(`welcome_${message.guild.id}`, channel.id)
+
+            return message.reply({
+                embeds: [new MessageEmbed()
+                .setColor("#fbd9ff")
+                .setAuthor({ name: "Se ha modificado la configuración del servidor" })
+                .setDescription(`Se ha modificado el canal de bienvenidas del servidor.\nEste el nuevo canal de bienvenidas del servidor: ${channel}`)
+                ]
+            })
+        } catch(error) {
+            return message.reply({
+                embeds: [new MessageEmbed()
+                .setColor("#fbd9ff")
+                .setAuthor({ name: "Error Code: 4054" })
+                .setDescription("No se ha podido activar el canal de bienvenidas.")
+                ]
+            })
+        }
+    } else if(format === "disable") {
+        try {
+        database.delete(`welcome_${message.guild.id}`)
+
+            return message.reply({
+                embeds: [new MessageEmbed()
+                .setColor("#fbd9ff")
+                .setAuthor({ name: "Se ha modificado la configuración del servidor" })
+                .setDescription(`Se ha removido el canal de bienvenidas del servidor.`)
+                ]
+            })
+        } catch(error) {
+            return message.reply({
+                embeds: [new MessageEmbed()
+                .setColor("#fbd9ff")
+                .setAuthor({ name: "Error Code: 4532" })
+                .setDescription("No se ha podido desactivar el canal de bienvenidas.")
+                ]
+            })
+        }
+    } else if(format === "content") {
+        let content = args.slice(1).join(" ");
+        
+        if(!content || content.length > 1024) {
+            return message.reply({
+                embeds: [new MessageEmbed()
+                .setColor("#fbd9ff")
+                .setAuthor({ name: "Error Code: 7231" })
+                .setDescription("No se ha proporcionado el contenido o se ha proporcionado un contenido demasiado largo.")
+                ]
+            })
+        } else {
+            await database.set(`welcomedes_${message.guild.id}`, content)
+            let format = content.replace(`<member>`, message.author).replace(`<memberRank>`, message.guild.members.cache.size)
+
+            return message.reply({
+                embeds: [new MessageEmbed()
+                .setColor("#fbd9ff")
+                .setDescription(`Se ha establecido el contenido de la bienvenida, y es este: ${format}`)
+                ]
+            })
+        }
+    } else if(format === "preview") {
+        const content = await database.get(`welcomedes_${message.guild.id}`)
+        const format = content.replace(`<member>`, message.author).replace(`<memberRank>`, message.guild.members.cache.size)
+
+        return message.reply({
+            embeds: [new MessageEmbed()
+            .setColor("#fbd9ff")
+            .setThumbnail(message.member.displayAvatarURL({ dynamic: true, format: "png", size: 4096 }))
+            .setAuthor({ name: "Un nuevo usuario ha entrado al servidor <3" })
+            .setDescription(`${format}`)
+            .setImage('https://cdn.discordapp.com/attachments/1053495932559306785/1054432480955994152/aniyuki-anya-spy-x-family-6.gif')
+            ]
+        })
+    }
+    } catch (error) {
+       console.log(`${error} || ${this.name} || ${message} || ${message.author} || ${message.guild.name}`)
+        }
+    }
+}
