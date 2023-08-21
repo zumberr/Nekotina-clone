@@ -23,7 +23,7 @@ npm run start
 mientras respetes los derechos de autor de este codigo, no tendre problemas
 no permito si se distribuye comercialmente sin permiso , simplemente si quieres usar algunos comandos tampoco tendre problemas
 
-cualquier duda o inquietud con referente a derechos de autor y demas puedes ir a mi servidor de discord
+para usar los stickers o cualquier duda e inquietud con referente a derechos de autor y demas puedes ir a mi servidor de discord
 
 https://discord.gg/seelyrandom
 
