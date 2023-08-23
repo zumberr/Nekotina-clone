@@ -97,17 +97,6 @@ mongoose
     // Categorias 
     client.categories = fs.readdirSync("./source/commands/");
     const { GiveawaysManager } = require("discord-giveaways");
-    const manager = new GiveawaysManager(client, {
-    storage: "./giveaways.json",
-    updateCountdownEvery: 10000,
-    default: {
-        botsCanWin: false,
-        exemptPermissions: [ "MANAGE_MESSAGES", "ADMINISTRATOR" ],
-        embedColor: "#FF0000",
-        reaction: "🎉"
-    }
-    });
-    client.giveawaysManager = manager;
 
 
     // No apagar el BOT al encontrar un error
