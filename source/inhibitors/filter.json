@@ -1,0 +1,107 @@
+{
+    "Filtro de palabras": [
+        "porno", "porn", "xxx",
+        "pornhub", "xvideos", "xnxx",
+        "blowjob", "hentaila", "nhentai",
+        "livesex", "nsfw", "sexo", "sex", "semen", "tits", "cowgirl", "titsjob",
+        "pornogratisdiario", "youporn", "iplogger", "xnxx", "xvideos", "pornhub", "nhentai", "hentai.", "nhentai.com"
+    ],
+
+    "Paginas bloqueadas": [
+        "pornogratisdiario.com", "youporn.com", "goku.com",
+        "iplogger.org", "xnxx.com", "xvideos.com", "pornhub.com", "nhentai.to",
+        "bingoporno.com", "porn.com", "pampaporno.com", "xvideos2.com", "nhentai.net",
+        "hentaila.com", "nhentai.com"
+    ],
+
+    "Configuracion General": {
+        "token": "",
+        "prefix": "!",
+        "OWNERID": ["505156137067216898","zumberestuvoaqui,si tienes dudas o no sabes que hacer contactame"],
+        "GOOGLE_CX": "",
+        "GOOGLE_KEY": "",
+        "OSU_KEY": "",
+        "giphyAPIKey": "",
+        "somerandomapi": "",
+        "mongo_uri": ""
+    },
+
+    "Minijuegos": {
+        "Guess The Flag": [
+            "Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh",
+            "Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia",
+            "Chad","Chile","China","Colombia","Congo","Costa Rica","Croatia","Cuba","Cyprus","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador",
+            "Equatorial Guinea","Estonia","Ethiopia","Finland","France","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guyana","Haiti",
+            "Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kuwait","Kyrgyz Republic","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein",
+            "Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Mauritania","Mauritius","Mexico","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Namibia",
+            "Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","Norway","Oman","Pakistan","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico",
+            "Qatar","Reunion","Romania","Russia","Rwanda","Samoa","San Marino","Satellite","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","South Africa","South Korea","Spain","Sudan","Suriname",
+            "Swaziland","Sweden","Switzerland","Taiwan","Tajikistan","Tanzania","Thailand","Togo","Tonga","Tunisia","Turkey","Turkmenistan","Uganda","Ukraine","United Arab Emirates","United Kingdom","Uruguay","Uzbekistan","Venezuela","Vietnam","Virgin Islands","Yemen","Zambia","Zimbabwe"
+        ]
+    },
+    
+    "Resultados del hackeo": {
+        "IPS": [
+            "40.81.151.21", "209.161.209.133", "5.7.117.249", "58.152.245.220", "36.142.204.54",
+            "181.137.253.87", "109.32.109.248", "171.222.86.230", "250.166.254.120", "52.172.212.203",
+            "79.209.11.3", "109.127.72.44", "145.245.143.102", "75.125.53.111", "126.143.119.72", "37.246.106.32",
+            "80.144.152.23", "186.150.37.159", "189.206.224.175", "186.176.243.123", "174.76.44.63", "77.175.160.169"
+        ],
+
+        "Contraseñas": [
+            "#oBlN#WmmPr4XQ$K&@Z#1IWU", "y06hbGvh1gS^7eYMPdlYTmFn", "FR$0sI!UU!q4FODzRNf$CFMK", "^kESZhrwt2aDW%naEMdtq&lU",
+            "325s73UCEk1puUqcJ88nBLU&", "097rbeuKHi^dMq%*2CDJd6G%", "pZX@u8m%4sXYBSy!@h%%NiwT", "3ksuvMbZf$cGFM#iY4tKx7cV", "6jsqA$%$JWTkcd0!eJWzg1jm",
+            "zp7Qu02#2KOC3!IOO$6VglXM", "K0ltRvQ^ld7O7S!SbQcupwBz", "&R^ARtDA^ygwvO%L$Vv^v@#L", "@DIBBVqip72wS78E3E9#%f4R", "lTUYoeWN%V6i7bphP^ea17yD", "lTUYoeWN%V6i7bphP^ea17yD","123456"
+        ],
+
+        "Pais": [
+            "Afganistán","Albania","Alemania","Andorra","Angola","Antigua y Barbuda","Arabia Saudita","Argelia","Argentina","Armenia","Australia","Austria","Azerbaiyán",
+            "Bahamas","Bangladés","Barbados","Baréin","Bélgica","Belice","Benín","Bielorrusia","Birmania","Bolivia","Bosnia y Herzegovina","Botsuana","Brasil","Brunéi","Bulgaria",
+            "Burkina Faso","Burundi","Bután","Cabo Verde","Camboya","Camerún","Canadá","Catar","Chad","Chile","China","Chipre","Ciudad del Vaticano","Colombia","Comoras","Corea del Norte",
+            "Corea del Sur","Costa de Marfil","Costa Rica","Croacia","Cuba","Dinamarca","Dominica","Ecuador","Egipto","El Salvador","Emiratos Árabes Unidos","Eritrea","Eslovaquia","Eslovenia","España",
+            "Estados Unidos","Estonia","Etiopía","Filipinas","Finlandia","Fiyi","Francia","Gabón","Gambia","Georgia","Ghana","Granada","Grecia","Guatemala","Guyana","Guinea","Guinea ecuatorial","Guinea-Bisáu",
+            "Haití","Honduras","Hungría","India","Indonesia","Irak","Irán","Irlanda","Islandia","Islas Marshall","Islas Salomón","Israel","Italia","Jamaica","Japón","Jordania","Kazajistán","Kenia","Kirguistán",
+            "Kiribati","Kuwait","Laos","Lesoto","Letonia","Líbano","Liberia","Libia","Liechtenstein","Lituania","Luxemburgo","Madagascar","Malasia","Malaui","Maldivas","Malí","Malta","Marruecos","Mauricio","Mauritania",
+            "México","Micronesia","Moldavia","Mónaco","Mongolia","Montenegro","Mozambique","Namibia","Nauru","Nepal","Nicaragua","Níger","Nigeria","Noruega","Nueva Zelanda","Omán","Países Bajos","Pakistán","Palaos","Palestina",
+            "Panamá","Papúa Nueva Guinea","Paraguay","Perú","Polonia","Portugal","Reino Unido","República Centroafricana","República Checa","República de Macedonia","República del Congo","República Democrática del Congo","República Dominicana",
+            "República Sudafricana","Ruanda","Rumanía","Rusia","Samoa","San Cristóbal y Nieves","San Marino","San Vicente y las Granadinas","Santa Lucía","Santo Tomé y Príncipe","Senegal","Serbia","Seychelles","Sierra Leona","Singapur","Siria","Somalia",
+            "Sri Lanka","Suazilandia","Sudán","Sudán del Sur","Suecia","Suiza","Surinam","Tailandia","Tanzania","Tayikistán","Timor Oriental","Togo","Tonga","Trinidad y Tobago","Túnez","Turkmenistán","Turquía","Tuvalu","Ucrania","Uganda","Uruguay","Uzbekistán","Vanuatu","Venezuela","Vietnam","Yemen","Yibuti","Zambia","Zimbabue"
+        ],
+
+        "Telefonos": [
+            "+44 (399) 776-4674", "+24 (170) 088-1845", "+07 (613) 105-0985", "+40 (142) 807-3748", "+44 (167) 546-6103", "+65 (845) 937-4785",
+            "+93 (925) 059-9194", "+08 (763) 428-3389", "+48 (747) 515-9347", "+50 (261) 190-9481", "+08 (648) 346-4762", "+55 (964) 876-7944", "+57 (734) 706-9567", "+52 (249) 025-1827",
+            "+09 (325) 080-5712", "+34 (408) 102-1436", "+22 (474) 218-2073", "+94 (540) 511-1735", "+17 (912) 260-6075", "+88 (297) 342-5424", "+42 (892) 572-6153", "+22 (085) 628-4009", "+38 (699) 760-4745", "+66 (296) 121-1836"
+        ],
+
+        "Emails": [
+            "qwaser119@oymuloe.com", "crattoicrasoxu-7112@yopmail.com", "wehowe4957@ketchet.com", "tadef58885@ketchet.com", "seknetelma@space.com", "niknekurko@google.com", "1bp9oj8eyn@blondemorkin.com", "2t0im4e5m3@kobrandly.com", "xec0jryt3d@cloud-mail.top", "jb4dp4i1ag@crepeau12.com", "9jwdmaxqwc@cashflow35.com",
+            "172kfujcg0@kobrandly.com", "yokeqwxgj1@blondemorkin.com", "yokeqwxgj1@blondemorkin.com", "tzor1lst28@popcornfly.com", "q46q5joj73@cloud-mail.top", "pgdj4ik5wl@coffeetimer24.com", "aog3s5m9uv@cloud-mail.top", "aog3s5m9uv@cloud-mail.top", "0biker9jrp@block521.com", "7bw5o814s9@best-john-boats.com", "7bw5o814s9@best-john-boats.com",
+            "iqj70u5jsj@popcornfarm7.com", "uncwx4pred@best-john-boats.com", "2fsyww01bk@cashflow35.com", "eikxtj415q@blondemorkin.com", "0phh04jwuc@blondemorkin.com", "7r9eslfyks@kobrandly.com"
+        ],
+
+        "Edad": [
+            "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", 
+            "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65", "66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82", "83", "84", "85", "86"
+        ],
+
+        "Zodiac": [
+            "Aries", "Tauro", "Geminis", "Cáncer", "Leo", "Virgo", "Escorpión", "Sagitario", "Capricornio", "Acuario", "Piscis"
+        ],
+
+        "Sangre": [
+            "A positivo (A+)", "A negativo (A-)", "B positivo (B+)", "B negativo (B-)", "AB positivo (AB+)",
+            "AB negativo (AB-)", "O positivo (O+)", "O negativo (O-)"
+        ]
+    },
+
+    "Respuestas de 8ball": [
+        "Si.", "No.", "Posiblemente", "Posiblemente no.",
+        "Quizas no.", "Quizas sí.", "Ni lo pienses", "Suerte en eso, aunque dudo mucho.", 
+        "Que pregunta mas ridicula, la verdad...","Es cierto.", "Sin duda.", "Definitivamente si.",
+        "Puedes confiar en ello.", "Segun mi diosa Eri, es imposible.", "Segun mi diosa Eri, es posible.",
+        "Lo mas probable es que si.", "Las señales apuntan a que sí.", "Sigue soñando.", "Lo mas probable es que no.",
+        "¿Quien pregunta eso?.", "Mejor no decirte ahora...", "Segun mi diosa Eri, eso es incorrecto..",
+        "Imposible.", "Mis fuentes dicen que no.", "Segun mi diosa Eri, eso es correcto."
+    ]
+}
