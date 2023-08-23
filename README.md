@@ -4,12 +4,12 @@ Hace un año empece a hacer el codigo de este bot inspirado en nekotina de momen
 # La idea 
 es que cada persona tenga en su servidor de discord al bot
 
-#instalacion
+# configuracion
 lo hice lo mas facil del mundo solo ve a 
 src/inhibitors/filter.json
 rellenas a tu preferencia
 
-#instalacion
+# detalles
 
 como se haria normalmente
 debes tener node.js descargado
@@ -19,7 +19,7 @@ npm i
 luego 
 npm run start
 
-#licencia
+# licencia
 mientras respetes los derechos de autor de este codigo, no tendre problemas
 no permito si se distribuye comercialmente sin permiso , simplemente si quieres usar algunos comandos tampoco tendre problemas
 
@@ -28,5 +28,5 @@ para usar los stickers o cualquier duda e inquietud con referente a derechos de 
 https://discord.gg/seelyrandom
 
 
-#disclaimer
+# disclaimer
 cualquier derecho y demas sobre nekotina es originalmente a sus creador@s y cualquier duda sera atendida con respecto a esto mismo 
