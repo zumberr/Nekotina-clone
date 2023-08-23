@@ -9,7 +9,7 @@ lo hice lo mas facil del mundo solo ve a
 src/inhibitors/filter.json
 rellenas a tu preferencia
 
-# detalles
+# instalacion
 
 como se haria normalmente
 debes tener node.js descargado
