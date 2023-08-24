@@ -45,7 +45,7 @@ module.exports = {
         })
     })
     } catch (error) {
-       console.error(`${error.stack} || ${this.name} || ${message} || ${message.author} || ${message.guild.name}`)
+       console.error(`ah ocurrido un error || ${error.stack} || ${this.name} || ${message} || ${message.author} || ${message.guild.name}`)
         }
     }
 }
