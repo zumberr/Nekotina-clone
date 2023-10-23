@@ -8,15 +8,15 @@ module.exports = {
         { 
 
             name: 'número', 
-            description: '¿Qué número de snipe, deseas recuperar?', 
+            description: '¿Qué número en orden de mensajes borrados, deseas recuperar? (ejemplo el 1 que es el primer mensaje borrado)', 
             type: 'INTEGER',
-            required: 'false',
+            required: 'true',
 
         },
         { 
 
             name: 'canal', 
-            description: '¿De qué canal deseas recuperar?', 
+            description: '¿De qué canal deseas recuperar el mensaje?', 
             type: 'CHANNEL',
             required: 'false',
 
