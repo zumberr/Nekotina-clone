@@ -2,7 +2,7 @@ const { Client, CommandInteraction, MessageEmbed } = require('discord.js');
 
 module.exports = {
 	name: 'kick',
-	description: 'Kick a user from the server',
+	description: 'expulsa un usuario del servidor',
 	options: [
 		{
 			type: 9,
