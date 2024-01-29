@@ -5,13 +5,13 @@ module.exports = {
     userPerms: ["MANAGE_MESSAGES"],
    options: [
                 {
-                    name: 'number',
+                    name: 'numero',
                     description: '1-100',
                     type: "INTEGER"
                 }
             ],
              run: async(client, interaction, args) => {
-       const msgnum = interaction.options.getInteger('number')
+       const msgnum = interaction.options.getInteger('numero')
        interaction.reply('eliminando...');
        interaction.channel.bulkDelete(msgnum);
     interaction.channel.send("Mensajes eliminados! <:moderacion:1058446616937369611>"); 
