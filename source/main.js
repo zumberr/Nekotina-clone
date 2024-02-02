@@ -8,7 +8,7 @@
     
     // Base de datos general
     const Database = require("quick.db");
-    const mongo = require("./inhibitors/filter.json")["Configuracion General"].mongo_uri
+    const mongo = require("./inhibitors/filter.json")["Configuracion General"].mongo_uri;
      
     const mongoose = require ('mongoose');
 
