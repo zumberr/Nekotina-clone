@@ -154,10 +154,10 @@ client.on("messageCreate", async (message) => {
         return message.reply({
             embeds: [new MessageEmbed()
             .setColor("#fdb4bf")
-            .setDescription("Holi <3 Mi nombre es Lena. \nSoy una bot sfw multifuncional en español, fui creada para ayudar, moderar e interactuar con tu comunidad! <:emoji_5:1045809011246780427> \n\nPuedes utilizar *help para obtener toda mi lista de comandos!")
+            .setDescription("Holi <3 Mi nombre es Sally. \nSoy una bot sfw multifuncional en español, fui creada para ayudar, moderar e interactuar con tu comunidad! <:emoji_5:1045809011246780427> \n\nPuedes utilizar *help para obtener toda mi lista de comandos!")
             ], components: [new MessageActionRow()
             .addComponents(new MessageButton()
-            .setURL("https://discord.com/oauth2/authorize?client_id=952045576776720425&permissions=1644972474359&scope=bot%20applications.commands")
+            .setURL("https://discord.com/oauth2/authorize?client_id=989304688136560682&permissions=1644972474359&scope=bot%20applications.commands")
             .setLabel("Invitame <3")
             .setStyle("LINK"))
                 .addComponents(new MessageButton()
@@ -165,7 +165,7 @@ client.on("messageCreate", async (message) => {
             .setLabel("Soporte <3")
             .setStyle("LINK"))
                 .addComponents(new MessageButton()
-            .setURL("http://lenitaa.carrd.co")
+            .setURL("http://seelyrandom.xyz")
             .setLabel("Sobre mí <3")
             .setStyle("LINK"))]
         })
@@ -311,19 +311,3 @@ client.on("messageCreate", async (message) => {
     // En caso de que absolutamente todo funcione correctamente, intenta ejecuta los comandos
     if(command) command.run(client, message, args, prefix)
 })
-
-//comandos que hice para molestar
-//client.on('messageCreate', (message) => {
-  //if (message.author.id === '900897318071582740') {
-   //console.log("adios!")
-   //message.react('')
-  //}
-//});
-
-//client.on('messageCreate', (message) => {
-  //if (message.author.id === '746486795050418296') {
-   //console.log("hola!")
-   //message.react('😂')
-  //}
-//});
-
