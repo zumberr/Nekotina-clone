@@ -35,6 +35,9 @@ no permito si se distribuye comercialmente sin permiso , simplemente si quieres 
 
 para usar los stickers o cualquier duda e inquietud con referente a derechos de autor y demas puedes ir a mi servidor de discord
 
+es un servidor social asi que puedes aprovechar y relacionarte 
+si me nesesitas con urgencia abre un ticket y dame ping
+
 https://discord.gg/seelyrandom
 
 
