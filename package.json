@@ -26,7 +26,7 @@
     "chalk": "^5.3.0",
     "discord-giveaways": "^6.0.1",
     "discord-music-player": "^9.1.1",
-    "discord.js": "^14.14.1",
+    "discord.js": "^13.6.0",
     "dream-api": "^2.0.1",
     "express": "^4.18.2",
     "isomorphic-unfetch": "^4.0.2",
@@ -37,4 +37,5 @@
     "star-labs": "^1.1.2"
   }
 }
+
 
