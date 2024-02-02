@@ -1,33 +1,32 @@
-// Vaciar la Consola al iniciar
+ Vaciar la Consola al iniciar
  console.clear()
 
  // Funcion para ejecutar
  function start() {
     // Definir "discord.js"
     const { Client, Collection } = require("discord.js");
-    
     // Base de datos general
     const Database = require("quick.db");
-    const mongo = require("./inhibitors/filter.json")["Configuracion General"].mongo_uri;
-     
+    const mongo = require("./inhibitors/filter.json")["Configuracion General"].mongo_uri
+
     const mongoose = require ('mongoose');
 
 mongoose
   .connect(mongo,{
-  
+
     useNewUrlParser: true,
     useUnifiedTopology: true,
 
   })
   .then(() => {
-  
+
     console.log('========================= MONGO DB =========================');
     console.log('Conectado exitosamente a MongoDB');
     console.log('========================= LOGS DEL BOT =========================');
 
   })
   .catch((e) => {
-  
+
     console.log('Error al conectar: '+e);
 
   });
@@ -66,7 +65,7 @@ mongoose
    });
 // You can define the Player as *client.player* to easily access it.
    client.player = player;
-     
+
      module.exports = player;
 
     // Exportacion Completa
@@ -74,7 +73,7 @@ mongoose
 
     // Modulo de Exportacion
     module.exports = client;
-    
+
     // Exportaciones
      //// discord player
     // Coleccion de los comandos completa
@@ -94,7 +93,7 @@ mongoose
     // Configuracion (OWNERID)
     client.config = require("./inhibitors/filter.json")["Configuracion General"];
 
-    // Categorias 
+    // Categorias
     client.categories = fs.readdirSync("./source/commands/");
     const { GiveawaysManager } = require("discord-giveaways");
 
@@ -108,41 +107,8 @@ mongoose
     ["command", "integer", "interaction"].forEach(handler => {
       require(`./arguments/${handler}`)(client);
     }),
-      //client.on('presenceUpdate', async (oldPresence, newPresence) => {
-    //const role = newPresence.guild.roles.cache.get("929218153303638033");
-    //const member = newPresence.member
-    //const activities = member.user.presence.activities[0];
-  
-    //if (activities && (activities.state.includes( ".gg/seelyrandom" ) || 
-    //activities.state.includes("discord.gg/seelyrandom" ))) {
-      //return newPresence.member.roles.add(role)
-    //} else {
-      //if(member.roles.cache.get(role.id)) {
-        //newPresence.member.roles.remove(role)
-        //}
-      //}
-    //})
-
     // Gateway Discord v9 Login config
    client.login(config) ///token de lena
-
-  
-
-
-    //const answers = ["Wlc", "parece que ha llegado un nuevo usuario", "ah aparecido una estrella salvaje."];
-    //client.on('guildMemberAdd', guild =>{
-    //const channelId = '929218153786015829';//add your channel ID
-    //const channel = client.channels.cache.get(channelId).send(answers[Math.floor(Math.random() * answers.length)]); //This Gets That Channel
-    
-    //if(!channel){
-      //return;
-    //}//If the channel is invalid it returns
-   /// return channel.send(answers[Math.floor(Math.random() * answers.length)]);
-      
-    //});
-//////////////////////////////////
-
-////////////////////////////
   };
 const keepAlive = require("./server");
 keepAlive();
