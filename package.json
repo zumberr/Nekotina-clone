@@ -1,33 +1,40 @@
 {
-  "name": "lenita",
+  "name": "nekoclone",
   "version": "1.0.0",
+  "description": "bot social",
   "main": "shards.js",
-  "dependencies": {
-    "axios": "^0.26.1",
-    "discord.js": "^13.6.0",
-    "hmfull": "^1.3.0",
-    "moment": "^2.29.2",
-    "ms": "^2.1.3",
-    "node-fetch": "^3.2.3",
-    "quick.db": "^7.1.3"
-  },
-  "devDependencies": {
-    "node": "^17.7.2"
-  },
   "scripts": {
-    "start": "node .",
-    "test": "nodemon main.js"
+    "test": "node /sorce/main.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/zumberr/Nekotina-clone.git"
   },
-  "keywords": [],
-  "author": "zumber",
+  "keywords": [
+    "nekotina",
+    "discord",
+    "bot"
+  ],
+  "author": "Zumberr",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/zumberr/Nekotina-clone/issues"
   },
   "homepage": "https://github.com/zumberr/Nekotina-clone#readme",
-  "description": ""
+  "dependencies": {
+    "anime-actions": "^2.1.0",
+    "chalk": "^5.3.0",
+    "discord-giveaways": "^6.0.1",
+    "discord-music-player": "^9.1.1",
+    "discord.js": "^14.14.1",
+    "dream-api": "^2.0.1",
+    "express": "^4.18.2",
+    "isomorphic-unfetch": "^4.0.2",
+    "moment": "^2.30.1",
+    "mongoose": "^8.1.1",
+    "node-fetch": "^2.6.1",
+    "quick.db": "^9.1.7",
+    "star-labs": "^1.1.2"
+  }
 }
+
