@@ -1,5 +1,8 @@
 te surgiran varios errores lo mas probable
-te invito a que trates de arreglarlos ya que pueden deberse a emojis que no tienes 
+te invito a que trates de arreglarlos ya que pueden deberse a emojis que no tienes
 y cosas asi
-te dare acceso al server de emojis si me contactas por el server 
-discord.gg/seelyrandom
+
+el servidor de emojis no es mantenido asi que lastimosamente te toca cambiar los emojis en partes importantes como el help
+
+
+# inhibitors = configuracion
