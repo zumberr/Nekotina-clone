@@ -43,7 +43,6 @@ Schema1.findOne({ Guild: member.guild.id }, async (e, data) => {
     if (!data) return;
     let user = member.user;
     const channel = member.guild.channels.cache.get(data.Channel);
-    
     channel.send({
         content: `${member.user}`,
             embeds: [new MessageEmbed()
@@ -51,28 +50,11 @@ Schema1.findOne({ Guild: member.guild.id }, async (e, data) => {
             .setAuthor({ name: `${member.user.username} se ha unido a ${member.guild.name}`})
             .setDescription(`Holi, ${member.user.username} bienvenido al servidor ${member.guild.name} 🎀 \nEres el miembro número ${member.guild.memberCount}!\n\n<:toslena:1054079675338604637> • No olvides leer las reglas O.o\n<:welcome:1058440895751524372> • Diviértete <3`)
              .setImage('https://cdn.discordapp.com/attachments/1053495932559306785/1054432480955994152/aniyuki-anya-spy-x-family-6.gif')
-                     .setFooter('© Lenita Bienvenidas')
+                     .setFooter('© Sally')
                      .setTimestamp()
             ]
         })
-    /*let WELCOME = new MessageEmbed()
-      .setTitle(`${member.user.username} se ha unido a ${member.guild.name}`)
-      .setDescription(
-        `📜 **Bienvenido a nuestro servidor ${member.user}** \nEres el miembro numero ${member.guild.memberCount}!\n \n 📜 ⊱ ──────────ஓ๑♡๑ஓ────────── ⊰ \n \n 📜 Lee las reglas \n \n 📜 ⊱ ──────────ஓ๑♡๑ஓ────────── ⊰ \n \n 📜Diviertete! \n \n 📜 ⊱ ──────────ஓ๑♡๑ஓ────────── ⊰ \n \n 📜 Somos ${member.guild.memberCount} en el servidor\n \n 📜 ⊱ ──────────ஓ๑♡๑ஓ────────── ⊰ \n \n 📜 \`Gracias por unirte a **${member.guild.name}** <3 Espero te diviertas.\` `
-      )
-      .setColor("RED")
-      // .setImage("la imagen que deseas")
-      .setTimestamp()
-      .setFooter("Lenita bienvenidas!");
-      */
-    
+
   });
 });
 
-//const welcomeChannelId = "929218153786015829";
-
-//client.on("guildMemberAdd", (member) => {
-  //member.guild.channels.cache
-   // .get(welcomeChannelId)
-    //.send(`haganle un wlc a <@${member.id}>!`);
-//});
