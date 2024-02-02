@@ -1,5 +1,5 @@
 const {ShardingManager} = require("discord.js");
-const config = require("./inhibitors/filter.json")["Configuracion General"].token;
+const config = require("./source/inhibitors/filter.json")["Configuracion General"].token;
 
 const shards = new ShardingManager("./source/main.js", {
     token: config,
