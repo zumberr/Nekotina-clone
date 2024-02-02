@@ -1,7 +1,7 @@
 {
   "name": "lenita",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "shards.js",
   "dependencies": {
     "axios": "^0.26.1",
     "discord.js": "^13.6.0",
