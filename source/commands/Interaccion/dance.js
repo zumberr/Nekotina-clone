@@ -1,22 +1,20 @@
 const star = require('star-labs')
 const { MessageEmbed } = require('discord.js');
 module.exports =  {
-    
     name: 'dance',
     aliases: ['bailando','bailar'],
     description: '¿Bailamos?',
     category: 'Interaccion',
     usage: '<prefix>dance [@user/id]',
-  
-    async run(client, message, args, Discord) { 
+
+    async run client, message, args, Discord) {
 
         let dance = star.dance()
         let img = message.guild.members.resolve(message.mentions.users.first() || client.users.cache.get(args[0]));
 
         while (!dance || dance === null || dance === '' || dance === undefined) {
-            
+
             dance = star.dance()
-            
         }
 
         if (!img || img.id === message.author.id) {
@@ -31,16 +29,14 @@ module.exports =  {
             message.channel.send({ embeds: [embed] }).catch((e) => console.log('Error al enviar mensaje: '+e))
 
         } else if (img.user.bot){
-        
+
             return message.reply({ allowedMentions: { repliedUser: false}, embeds: [
-        
+
                 new MessageEmbed()
                 .setAuthor({ name: message.author.tag, iconURL: message.author.displayAvatarURL({ dynamic: true}) })
                 .setColor('RED')
                 .setDescription(`yo no sé bailar u.u`)
-        
             ]}).catch((e) => console.log('Error al enviar mensaje: '+e))
-        
         } else {
 
             const embed = new MessageEmbed()
