@@ -2,7 +2,8 @@
 const client = require("../main");
 
 // Base de datos interna
-const database = require("quick.db");
+const { QuickDB, get } = require('quick.db');
+const database = new QuickDB();
 
 // Configuracion General
 const config = require("../inhibitors/filter.json");
@@ -70,7 +71,7 @@ client.on("messageCreate", async (message) => {
     }
 
     // Sistema de Clasificacion
-    let xpranker = await client.database.get(`xprank_${message.guild.id}`);
+    let xpranker = await database.get(`xprank_${message.guild.id}`);
 
     // En caso de que tenga "true" en la opciones del xp ranker
     if(xpranker === true) {
