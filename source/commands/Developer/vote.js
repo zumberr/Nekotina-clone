@@ -5,12 +5,12 @@ const disagree = "❌";
 
 module.exports = {
   name: "vote",
-  category: "moderation",
-  description: "Vote for the message above.'",
+  category: "moderacion",
+  description: "Vota por el comentario.'",
   run: async (client, message, args) => {
 
-    
-    if(!args || args[0] === 'help') return message.reply("Usage: vote <question>")
+    ////////////////////////// este comando la finalidad era crear encuentas para las personas y demas
+    if(!args || args[0] === 'help') return message.reply("Uso: vote <question>")
 
     let msg = await message.channel.send(`Question: ${message.content.split(" ").splice(1).join(" ")} \nVote now! (Vote time: 5min)`);
   await msg.react(agree);
