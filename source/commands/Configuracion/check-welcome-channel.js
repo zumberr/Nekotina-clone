@@ -22,7 +22,7 @@ module.exports = {
             .setDescription(
               "**no tienes permisos para establecer o checar el canal de bienvenidas! - [MANAGE_MESSAGES]**"
             )
-            .setFooter("lenita bienvenidas")
+            .setFooter("sally bienvenidas")
         )
         .then((msg) => {
           msg.delete({ timeout: 10000 });
@@ -36,7 +36,7 @@ module.exports = {
             .setColor("RED")
             .setAuthor(message.author.tag)
             .setDescription("**este servidor y el canal de bienveidas no estan guardados en mi base de datos!!**")
-            .setFooter("lenita")
+            .setFooter("sally")
         );
       const channel = client.channels.cache.get(data.Channel);
 

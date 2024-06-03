@@ -1,4 +1,4 @@
- Vaciar la Consola al iniciar
+ ///Vaciar la Consola al iniciar
  console.clear()
 
  // Funcion para ejecutar

@@ -4,15 +4,15 @@ const agree    = "✅";
 const disagree = "❌";
 
 module.exports = {
-  name: "vote",
-  category: "moderacion",
-  description: "Vota por el comentario.'",
+  name: "sugerencia",
+  category: "Developer",
+  description: "Sugiere un cambio para la bot.'",
   run: async (client, message, args) => {
 
     ////////////////////////// este comando la finalidad era crear encuentas para las personas y demas
     if(!args || args[0] === 'help') return message.reply("Uso: vote <question>")
 
-    let msg = await message.channel.send(`Question: ${message.content.split(" ").splice(1).join(" ")} \nVote now! (Vote time: 5min)`);
+    let msg = await message.channel.send(`Sugerencia: ${message.content.split(" ").splice(1).join(" ")} \nVota ahora! (tiempo de voto: 5min)`);
   await msg.react(agree);
   await msg.react(disagree);
 
@@ -29,14 +29,14 @@ module.exports = {
 
   var nightcoreat = new Discord.MessageEmbed()
   
-            .addField("Voting Finished:", "----------------------------------------\n" +
-                                          "Question: " + message.content.split(" ").splice(1).join(" ") + "\n" +
-                                          "Total votes (Yes): " + `${YES_Count-1}\n` +
-                                          "Total votes (NO): " + `${NO_Count-1}\n` +
+            .addField("finalizado:", "----------------------------------------\n" +
+                                          "Sugerencia: " + message.content.split(" ").splice(1).join(" ") + "\n" +
+                                          "Votos a si (Yes): " + `${YES_Count-1}\n` +
+                                          "Votos a no (NO): " + `${NO_Count-1}\n` +
                                           "----------------------------------------", true)
 
             .setColor("0x#FF0000")
-            .setFooter(`© Esto es un test de Lenita`);
+            .setFooter(`© Esto es un comando de sally`);
   await message.channel.send({embed: nightcoreat});
   
   }

@@ -26,7 +26,7 @@ module.exports = {
 
       let description =
         `<:ServerTag:918576149704106014> | Estoy en ${client.guilds.cache.size} servidores.\n\n` +
-        cliennt.guilds.cache
+        client.guilds.cache
           .sort((a, b) => b.memberCount - a.memberCount)
           .map((r) => r)
           .map(
