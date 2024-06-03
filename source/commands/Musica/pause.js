@@ -17,7 +17,7 @@ module.exports = {
      * @param {String[]} args
      */
      async run (client, message, args)  {
-        let song = await  client.player.getQueue(message.guild.id).setPaused(true);
+        let song = await   client.distube.pause(message.guild.id).setPaused(true);
         message.channel.send(`**${song.name}** está en pausa!`);
     },
 };

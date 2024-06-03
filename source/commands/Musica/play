@@ -1,5 +1,6 @@
 const { checkVC } = require("../../util/checkVC");
-const { TrackUtils } = require("erela.js");
+const { EmbedBuilder } = require("discord.js");
+const { DisTube } = require("distube");
 
 module.exports = {
     name: "play",
@@ -43,106 +44,28 @@ module.exports = {
                 ]
             })
 
-        const node = client.manager.nodes.get("Main");
-
-        if (!node || !node.connected)
-            return message.reply({
-                embeds: [
-                    {
-                        color: "RED",
-                        description:
-                            "Apenas me estoy conectando al servidor de musica y ya me quieres usar , porfavor espera 1 minuto"
-                    }
-                ]
-            });
-
-        const player = client.manager.create({
-            guild: message.guildId,
-            voiceChannel: info.vc.id,
-            textChannel: message.channel.id,
-            selfDeafen: true
-        })
+        const distube = client.distube;
 
         if (!info.vc.permissionsFor(message.guild.me).has(['CONNECT', 'SPEAK']))
             return message.reply('No tengo permiso para conectarme a este canal')
 
-        if (!player.state || player.state !== "CONNECTED") player.connect()
+        if (!distube.voices[message.guildId]) distube.voices.create(message);
 
         try {
-            if (search.match(client.lavasfy.spotifyPattern)) {
-                client.lavasfy.requestToken();
-
-                const node = client.lavasfy.nodes.get("Main");
-                const searched = await node.load(args[0]);
-
-                switch (searched.loadType) {
-                    case "PLAYLIST_LOADED":
-                        let songs = [];
-
-                        for (let i = 0; i < searched.tracks.length; i++)
-                            songs.push(TrackUtils.build(searched.tracks[i], message.author));
-
-                        player.queue.add(songs);
-
-                        if (
-                            !player.playing &&
-                            !player.paused &&
-                            player.queue.totalSize === searched.tracks.length
-                        )
-                            player.play();
-
-                        message.reply(
-                            `<:emoji_12:1058441115495309462>  Se agregó ${searched.playlistInfo.name} (${searched.tracks.length} canciones)`
-                        );
-                        break;
-
-                    case "TRACK_LOADED":
-                        const cancion = searched.tracks[0];
-                        player.queue.add(TrackUtils.build(cancion, message.author));
-
-                        if (!player.playing && !player.paused && !player.queue.size) player.play();
-
-                        message.reply(`<:emoji_12:1058441115495309462>  Se agregó ${cancion.info.title}`);
-                        break;
-
-                    default:
-                        console.log(searched)
-                        message.reply(`:x: No encontré resultados para tu búsqueda`);
-                        break;
-                }
-            } else {
-                const searched = await player.search(search, message.author);
-
-                switch (searched.loadType) {
-                    case "LOAD_FAILED":
-                        message.reply(`:x: No encontré resultados para tu búsqueda`);
-                        break;
-
-                    case "PLAYLIST_LOADED":
-                        player.queue.add(searched.tracks);
-
-                        if (
-                            !player.playing &&
-                            !player.paused &&
-                            player.queue.totalSize === searched.tracks.length
-                        )
-                            player.play();
-
-                        message.reply(
-                            `<:emoji_12:1058441115495309462>  Se agregó ${searched.playlist.name} (${searched.tracks.length} canciones)`
-                        );
-                        break;
-
-                    default:
-                        const cancion = searched.tracks[0];
-                        player.queue.add(cancion);
-
-                        if (!player.playing && !player.paused && !player.queue.size) player.play();
-                        
-                        message.reply(`<:emoji_12:1058441115495309462>  Se agregó ${cancion.title}`)
-                        break;
-                }
-            }
+            distube.play(message, search)
+                .then((song) => {
+                    message.reply({
+                        embeds: [
+                            {
+                                color: "GREEN",
+                                description: `Reproduciendo: \`${song.name}\``
+                            }
+                        ]
+                    });
+                })
+                .catch((err) => {
+                    message.reply(`:x: No encontré resultados para tu búsqueda`);
+                });
         } catch (error) {
             return message.reply(`<:duda:1058446215034978414> No encontré resultados para tu búsqueda`);
         }
