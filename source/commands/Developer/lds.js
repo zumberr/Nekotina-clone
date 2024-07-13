@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const ownerid = ('505156137067216898'); 
+const ownerid = "505156137067216898"; //cambialo al tuyo
 module.exports = {
   name: 'listado-de-servidores',
   aliases: ['lds'],
@@ -16,7 +16,7 @@ module.exports = {
       if (!message.guild.me.permissions.has('ADMINISTRATOR'))
         return message.channel
           .send(
-            '<a:no:918161906177556500> | No tengo el permiso de `Administrador` aquí .'
+            '<:x:> | No tengo el permiso de `Administrador` aquí .'
           )
           .then((msg) => msg.delete({ timeout: 5000 }));
 
@@ -25,7 +25,7 @@ module.exports = {
       let page = 1;
 
       let description =
-        `<:ServerTag:918576149704106014> | Estoy en ${client.guilds.cache.size} servidores.\n\n` +
+        ` Actualmente estoy en ${client.guilds.cache.size} servidores.\n\n` +
         client.guilds.cache
           .sort((a, b) => b.memberCount - a.memberCount)
           .map((r) => r)
@@ -33,7 +33,7 @@ module.exports = {
             (r, i) =>
               `**${i + 1}** - ${r.name} | ${
                 r.memberCount
-              } Miembros <:usuario:918193308763844660>\nID - ${r.id}`
+              } Miembros \nID - ${r.id}`
           )
           .slice(0, 10)
           .join('\n\n');
@@ -92,7 +92,7 @@ module.exports = {
                 (r, i) =>
                   `**${i + 1}** - ${r.name} | ${
                     r.memberCount
-                  } Miembros <:usuario:918193308763844660>\nID - ${r.id}`
+                  } Miembros \nID - ${r.id}`
               )
               .slice(i0, i1)
               .join('\n\n');
@@ -118,7 +118,7 @@ module.exports = {
           }
 
           description =
-            `<:ServerTag:918576149704106014> | Estoy en ${client.guilds.cache.size} servidores.\n\n` +
+            `Estoy en ${client.guilds.cache.size} servidores.\n\n` +
             client.guilds.cache
               .sort((a, b) => b.memberCount - a.memberCount)
               .map((r) => r)
@@ -126,7 +126,7 @@ module.exports = {
                 (r, i) =>
                   `**${i + 1}** - ${r.name} | ${
                     r.memberCount
-                  } Miembros<:usuario:918193308763844660>\nID - ${r.id}`
+                  } Miembros\nID - ${r.id}`
               )
               .slice(i0, i1)
               .join('\n\n');

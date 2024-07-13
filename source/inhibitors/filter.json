@@ -17,13 +17,13 @@
     "Configuracion General": {
         "token": "",
         "prefix": "!",
-        "OWNERID": ["505156137067216898","zumberestuvoaqui,si tienes dudas o no sabes que hacer contactame"],
-        "GOOGLE_CX": "",
-        "GOOGLE_KEY": "",
+        "OWNERID": ["505156137067216898"],
         "OSU_KEY": "",
         "giphyAPIKey": "",
         "somerandomapi": "",
-        "mongo_uri": ""
+        "mongo_uri": "",
+        "userAI": "https://nexra.aryahcr.cc/",
+        "nxAI":"https://nexra.aryahcr.cc/"
     },
 
     "Minijuegos": {

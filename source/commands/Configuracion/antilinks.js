@@ -15,7 +15,7 @@ module.exports = {
    try {
     let format;
     format = args[0];
-//codigo hecho por el zumber https://github.com/zumber o discord.gg/seelyrandom (puto si lo borras)
+
     if(!format) {
         return message.reply({
             embeds: [new MessageEmbed()

@@ -10,7 +10,6 @@ module.exports = {
         let i0 = 0;
         let i1 = 10;
         let page = 1;
-//codigo hecho por el zumber https://github.com/zumber o discord.gg/seelyrandom (puto si lo borras)
         const description =
             `Total Servers - ${client.guilds.cache.size}\n\n` +
             client.guilds.cache

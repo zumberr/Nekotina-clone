@@ -1,11 +1,13 @@
 const { MessageEmbed } = require("discord.js")
+const { ownerOnly } = require("../Configuracion/antilinks")
 
 module.exports = {
-        name: 'amigos',
+    name: 'amigos',
     aliases: [],
     description: 'Mostrar la cantidad de servidores donde estoy y sus usuarios.',
     category: 'Informacion',
     usage: '<prefix>amigos',
+    ownerOnly:true,
   
     async run(client, message, args, Discord) {
            try {

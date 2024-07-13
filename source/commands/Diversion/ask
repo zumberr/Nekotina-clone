@@ -1,0 +1,46 @@
+const { MessageEmbed } = require("discord.js")
+
+module.exports = {
+    name: "Ai",
+    usage: "ask <contenido>",
+    aliases: ["sally"],
+    cooldown: 7,
+    example: "ask Hello",
+    ownerOnly: false,
+    UserPerms: ["SEND_MESSAGES"],
+    ClientPerms: ["SEND_MESSAGES", "EMBED_LINKS"],
+    description: "preguntame lo que sea , estoy para ayudarte",
+    async run(client, message, args, prefix) {
+   try {
+     const prompt = args.join(" ");join(" ");
+     if (!prompt) {
+        return message.reply("No puedes hacer preguntas ala IA si no tienes nada que preguntar");
+     };
+
+     const { akemi } = require("gpti");
+
+     akemi.v1({
+         prompt: prompt,
+         model: "GPT-4",
+         markdown: false
+     }, (err, data) => {
+         if(err != null){
+             console.log(err);
+         } else {
+             console.log(data);
+         }
+   }); 
+         
+         const embed = new MessageEmbed()
+         .setAuthor(client.user.tag, client.user.displayAvatarURL({
+             dynamic: true
+         }))
+         .setTitle("Aca esta tu respuesta")
+         .setColor("BLUE")
+         .setDescription(data)
+         .setFooter("sallyAI")
+    } catch (error) {
+       console.log(`${error} || ${this.name} || ${message} || ${message.author} || ${message.guild.name}`)
+        }
+    }
+}

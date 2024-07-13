@@ -1,16 +1,16 @@
 
-## si llegamos a las 30 estrellas creare la economia igual ya tengo la idea
-//si no me mato
-# Sally
-Hace un año empece a hacer el codigo de este bot inspirado en nekotina de momento si recibe apoyo tratare de hacer las funciones de nekotina de economia
+## Primero
+obviamente es una version con menos cosas la idea es recrear mas no copiarla al 100% , los sistemas de economia y demas estare haciendolos futuramente
+# sally
+decidi hacerlo opensource , en agradecimiento a varias personas que tienen curiosidad y tratar que las cosas sean accesible para todos , no esta completo y por ello pido una disculpa 
 
-# La idea
-es que cada persona tenga en su servidor de discord al bot
+# Version hosteada 
+https://discord.
 
 # configuracion
-lo hice lo mas facil del mundo solo ve a
+simplemente ve a la carpeta 
 src/inhibitors/filter.json
-rellenas a tu preferencia
+algunas cosas son requeridas y otras no tanto
 
 # instalacion
 
@@ -27,7 +27,7 @@ npm run start
 Es dificil para mi mantener todo el codigo actualizado por lo cual debes tener un conocimiento basico de node.js o bueno saber solucionar los errores para correr el codigo
 muchas personas me preguntan si pueden usar parte del codigo en sus bots (no tengo problema) con tal que tu bot respete la liencia y no sea de uso comercial pero igual casi no hay casos asi
 
-denle star al repo , es dificil mantenerlo activo y actualizado yo soy de los que no da star a repos casi pero si son nesesarios para demostrar el apoyo de la comunidad al bot
+denle star al repo es dificil mantenerlo activo y actualizado , son nesesarios para demostrar el apoyo de la comunidad al bot y esto unicamente si tu deseas hacerlo
 
 # licencia
 mientras respetes los derechos de autor de este codigo, no tendre problemas
@@ -38,7 +38,7 @@ para usar los stickers o cualquier duda e inquietud con referente a derechos de 
 es un servidor social asi que puedes aprovechar y relacionarte 
 si me nesesitas con urgencia abre un ticket y dame ping
 
-https://discord.gg/seelyrandom
+https://discord.gg/pya
 
 
 # disclaimer

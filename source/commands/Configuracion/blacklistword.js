@@ -17,7 +17,6 @@ module.exports = {
     let getdatabase;
     format = args[0];
     getdatabase = await database.get(`blacklistword_${message.guild.id}`);
-//codigo hecho por el zumber https://github.com/zumber o discord.gg/seelyrandom (puto si lo borras)
     if(!format) {
         return message.reply({
             embeds: [new MessageEmbed()

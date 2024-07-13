@@ -20,7 +20,6 @@ module.exports = async (client) => {
         for (const file of commands) {
             // Obtener los comandos completamente
             const commander = require(`../commands/${dir}/${file}`);
-//codigo hecho por el zumber https://github.com/zumber o discord.gg/seelyrandom
             // Modulos de los comandos
             if(commander.name) {
                 // Establecer name para los comandos
@@ -39,7 +38,6 @@ module.exports = async (client) => {
                 String;
             // Terminar "commander.example"
             }
-            //codigo hecho por el zumber https://github.com/zumber o discord.gg/seelyrandom
             // Definir "aliases" en los comandos
             if(commander.aliases) {
                 // Array Aliases

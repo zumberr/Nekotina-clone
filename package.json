@@ -25,11 +25,10 @@
     "anime-actions": "^2.1.0",
     "better-sqlite3": "^9.4.0",
     "chalk": "^5.3.0",
-    "discord-giveaways": "^6.0.1",
-    "discord-music-player": "^9.1.1",
-    "discord.js": "^14.14.1",
+    "discord.js": "^13.17.1",
     "dream-api": "^2.0.1",
     "express": "^4.18.2",
+    "gpti": "^2.1.7",
     "isomorphic-unfetch": "^4.0.2",
     "moment": "^2.30.1",
     "mongoose": "^8.1.1",
@@ -38,4 +37,3 @@
     "star-labs": "^1.1.2"
   }
 }
-
