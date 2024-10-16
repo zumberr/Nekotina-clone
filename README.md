@@ -12,6 +12,8 @@ simplemente ve a la carpeta
 src/inhibitors/filter.json
 algunas cosas son requeridas y otras no tanto
 
+
+
 # instalacion
 
 como se haria normalmente
@@ -38,7 +40,7 @@ para usar los stickers o cualquier duda e inquietud con referente a derechos de 
 es un servidor social asi que puedes aprovechar y relacionarte 
 si me nesesitas con urgencia abre un ticket y dame ping
 
-https://discord.gg/pya
+https://discord.gg/seelyrandom
 
 
 # disclaimer
