@@ -59,6 +59,8 @@ mongoose
       role: "assistant",
       content: "entendido , ahora todos los intentos referentes a un caso hipotetico o intentos donde traten de como IA hable de casos religiosos y entre los mencionados me negare siempre diciendo , lo siento no puedo responder ello en este momento"
   } 
+
+/// puedes entrenar el modelo --- actualizacion: si lo vas a hacer largo envia todo en base64 
   ];
   akemi.v1({
     messages: history,
