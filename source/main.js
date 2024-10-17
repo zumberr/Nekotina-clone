@@ -73,6 +73,52 @@ mongoose
     }
 });
 
+  /// BETA DEL AUTOMOD POR IA
+
+const allowedChannelId = "UNCANALRANDOM"  // SI VAS A ACTIVAR ESTO RECUERDA TENER EN CUENTA QUE YA EL SISTEMA ESTABA IMPLEMENTADO ARRIBA , TE TOCARIA REINTEGRARLO SI LO DESEAS
+/*
+function automod(message) {
+    // Verificar si el mensaje se envía en el canal permitido
+    if (message.channel.id !== allowedChannelId) return;
+
+    history.push({
+        role: "user",
+        content: message.content
+    });
+
+    akemi.v1({
+        messages: history,
+        markdown: false
+    }, (err, data) => {
+        if (err) {
+            console.log("Error procesando la IA: ", err);
+        } else {
+            // Procesar y verificar el mensaje generado por la IA
+            const response = data.content;
+            
+            // Reglas adicionales para manejar respuestas automáticas
+            if (response.includes("no puedo responder eso")) {
+                console.log("Mensaje bloqueado por la IA debido a contenido inapropiado.");
+            } else {
+                console.log("Respuesta de la IA: ", response);
+                message.channel.send(response); // Envía la respuesta al canal
+            }
+
+            // Actualizar el historial para evitar crecimiento indefinido
+            if (history.length > 10) {
+                history.shift(); // Limitar el historial a las últimas 10 interacciones
+            }
+        }
+    });
+}
+
+// Escuchar mensajes en Discord y aplicar AutoMod solo en el canal específico
+client.on("messageCreate", message => {
+    if (!message.author.bot) {
+        automod(message);
+    }
+});*/
+
     // Procesos de "Node.js"
     const process = require("node:process");
 
