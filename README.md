@@ -1,4 +1,10 @@
 
+
+#Actualizacion
+que tal como estan ? estoy viendo si integrar el mejoramiento de rendimiento del bot por IA y hacer mas escalable el proyecto
+aunque claro esto lo estare implementando en los siguientes dias 
+
+
 ## Primero
 obviamente es una version con menos cosas la idea es recrear mas no copiarla al 100% , los sistemas de economia y demas estare haciendolos futuramente
 # sally
