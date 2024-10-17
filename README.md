@@ -1,6 +1,7 @@
 
 
-#Actualizacion
+# Actualizacion
+
 que tal como estan ? estoy viendo si integrar el mejoramiento de rendimiento del bot por IA y hacer mas escalable el proyecto
 aunque claro esto lo estare implementando en los siguientes dias 
 
