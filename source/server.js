@@ -3,12 +3,12 @@ const express = require("express");
 const server = express();
 
 server.all("/", (req, res) => {
-  res.send("Your account is alive!");
+  res.send("Hola si ves esto estas viendo un ejemplo de la web!");
 });
 
 function keepAlive() {
   server.listen(3000, () => {
-    console.log("Server is Ready!");
+    //console.log("S!");
   });
 }
 
