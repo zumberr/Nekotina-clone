@@ -1,73 +1,85 @@
-const { checkVC } = require("../../util/checkVC");
 const { EmbedBuilder } = require("discord.js");
-const { DisTube } = require("distube");
+const { checkVC } = require("../../util/checkVC");
 
 module.exports = {
     name: "play",
-    aliases: ["reproducir", "p"],
-    description: "Reproduce música de YouTube o Spotify", 
-    usage: "<prefix>play <Canción>",
-    /**
-     * @param {import("../../classes/Client")} client
-     * @param {import("discord.js").Message} message
-     * @param {String[]} args
-     * @param {String} prefix
-     */
-    run: async (client, message, args, prefix) => {
-        const info = await checkVC(message);
-        if (info.status === 0) return;
+    aliases: ["p", "reproducir"],
+    description: "Reproduce música en tu canal de voz",
+    category: "music",
+    usage: "<canción o URL>",
+    cooldown: 3,
 
-        if (!args[0])
+    /**
+     * @param {import("../../types").ClientExt} Este es el cliente
+     * @param {import("discord.js").Message} importamos de la libreria
+     * @param {string[]} args
+     */
+    async execute(client, message, args) {
+        // Verificar conexión a canal de voz
+        const vcCheck = await checkVC(message);
+        if (!vcCheck.status) return;
+        
+        // Validar argumentos
+        if (!args.length) {
             return message.reply({
-                embeds: [
-                    {
-                        color: "RED",
-                        description: `no sabes que poner?.\nmira este video tutorial: \`${prefix}play https://youtu.be/dQw4w9WgXcQ` // epico rickroll
-                    }
+                embeds: [new EmbedBuilder()
+                    .setColor("Red")
+                    .setDescription(`❌ Especifica una canción o URL\nEjemplo: \`${client.prefix}play yo tengo cuatro peines\``)
                 ]
             });
+        }
 
-        let search = args.join(" ");
-
-        if (message.mentions.channels.first() || message.mentions.roles.first() || message.mentions.users.first() || message.mentions.everyone) 
+        /// esta es opcional pero no falta el usuario que menciona a otro y ocasiona un error a proposito
+        if (message.mentions.has()) {
             return message.reply({
-                embeds: [
-                    {
-                        color: "RED",
-                        description: `¿estas mencionando a alguien como si fuera una cancion? <:emoji_13:1058441262845411479> `,
-                        footer: {
-                            iconURL: 'https://cdn.discordapp.com/attachments/1052761511208169492/1062534000599638107/images.jpg',
-                            text: '.'
-                        },
-                        timestamp: Date.now()
-                    }
+                embeds: [new EmbedBuilder()
+                    .setColor("Orange")
+                    .setDescription("⚠️ No puedes mencionar usuarios/roles como nombre de canción")
                 ]
-            })
+            });
+        }
 
-        const distube = client.distube;
-
-        if (!info.vc.permissionsFor(message.guild.me).has(['CONNECT', 'SPEAK']))
-            return message.reply('No tengo permiso para conectarme a este canal')
-
-        if (!distube.voices[message.guildId]) distube.voices.create(message);
-
+        const query = args.join(" ");
+        const queue = client.distube.getQueue(message);
+        
         try {
-            distube.play(message, search)
-                .then((song) => {
-                    message.reply({
-                        embeds: [
-                            {
-                                color: "GREEN",
-                                description: `Reproduciendo: \`${song.name}\``
-                            }
-                        ]
-                    });
-                })
-                .catch((err) => {
-                    message.reply(`:x: No encontré resultados para tu búsqueda`);
-                });
+   
+            const song = await client.distube.play(message.member.voice.channel, query, {
+                member: message.member,
+                textChannel: message.channel,
+                message
+            });
+
+
+            await message.reply({
+                embeds: [new EmbedBuilder()
+                    .setColor("#4B0082")
+                    .setTitle("🎶 Canción añadida")
+                    .setDescription(`[${song.name}](${song.url})`)
+                    .addFields(
+                        { name: "Duración", value: song.formattedDuration, inline: true },
+                        { name: "Solicitada por", value: song.user.toString(), inline: true }
+                    )
+                    .setThumbnail(song.thumbnail)
+                ]
+            });
+            
         } catch (error) {
-            return message.reply(`<:duda:1058446215034978414> No encontré resultados para tu búsqueda`);
+            console.error(error);
+            
+            const errorMessage = {
+                "NO_QUEUE": "❌ No hay canciones en reproducción",
+                "NO_VOICE": "🔊 Únete a un canal de voz primero",
+                "INVALID_URL": "⚠️ Enlace no válido",
+                "SEARCH_NULL": "🔍 No encontré resultados"
+            }[error.message] || "❌ Error desconocido";
+
+            message.reply({
+                embeds: [new EmbedBuilder()
+                    .setColor("Red")
+                    .setDescription(errorMessage)
+                ]
+            });
         }
     }
 };
