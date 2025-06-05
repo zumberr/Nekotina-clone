@@ -4,7 +4,7 @@
   "description": "bot social",
   "main": "shards.js",
   "scripts": {
-    "test": "node /sorce/main.js"
+    "test": "node /source/main.js"
   },
   "repository": {
     "type": "git",
