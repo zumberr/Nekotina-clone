@@ -1,10 +1,11 @@
 // Exportar "Client & Logging" de main.js
 const client = require("../main");
+const logger = require("../logger");
 const chalk = require("chalk");
 // Realizar al iniciar
 client.on("ready", () => {
     // Console Logger
-    console.log(`Lenita se ha iniciado correctamente`);
+    logger.info(`Lenita se ha iniciado correctamente`);
     
     client.user.setActivity({ name: `discord.gg/seelyrandom! | !help`, type: "LISTENING" });
     ///

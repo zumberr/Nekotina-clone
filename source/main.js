@@ -1,6 +1,9 @@
  ///Vaciar la Consola al iniciar
  console.clear()
 
+ // Logger
+ const logger = require('./logger');
+
  // Funcion para ejecutar
  function start() {
     // Definir "discord.js"
@@ -20,13 +23,13 @@ mongoose
   })
   .then(() => {
 
-    console.log('========================= MONGO DB =========================');
-    console.log('Conectado exitosamente a MongoDB');   
-    console.log('========================= LOGS DEL BOT =========================');
+    logger.info('========================= MONGO DB =========================');
+    logger.info('Conectado exitosamente a MongoDB');   
+    logger.info('========================= LOGS DEL BOT =========================');
   })
   .catch((e) => {
 
-    console.log('Error al conectar: '+e);
+    logger.error('Error al conectar: '+e);
 
   });
   ///iniciando la IA
@@ -35,7 +38,7 @@ mongoose
    akemi(require("./inhibitors/filter.json")["Configuracion General"].userAI, require("./inhibitors/filter.json")["Configuracion General"].nxAI);
 
    if(!akemi){
-    console.log("no llenaste la api de gpti , esto no permitira usar algunas opciones del bot")
+     logger.warn("no llenaste la api de gpti , esto no permitira usar algunas opciones del bot")
    }
    ///configuracion de la IA
    let history = [
@@ -67,9 +70,9 @@ mongoose
     markdown: false
     }, (err, data) => {
     if(err != null){
-        console.log(err);
+        logger.error(err);
     } else {
-        console.log(data);
+        logger.info(data);
     }
 });
 
@@ -98,9 +101,9 @@ function automod(message) {
             
             // Reglas adicionales para manejar respuestas automáticas
             if (response.includes("no puedo responder eso")) {
-                console.log("Mensaje bloqueado por la IA debido a contenido inapropiado.");
+                logger.warn("Mensaje bloqueado por la IA debido a contenido inapropiado.");
             } else {
-                console.log("Respuesta de la IA: ", response);
+                logger.info("Respuesta de la IA: ", response);
                 message.channel.send(response); // Envía la respuesta al canal
             }
 
@@ -177,7 +180,7 @@ client.on("messageCreate", message => {
 
     // No apagar el BOT al encontrar un error
     process.on("uncaughtException", function(err) {
-     console.log(err);
+     logger.error(err);
     });
 
     // Command y integer

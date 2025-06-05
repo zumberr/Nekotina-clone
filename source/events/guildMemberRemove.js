@@ -1,5 +1,6 @@
 const database = require("quick.db");
 const client = require("../main");
+const logger = require("../logger");
 const { MessageEmbed } = require("discord.js")
 /// sistema de logs
 client.on("guildMemberRemove", async (member) => {
@@ -16,7 +17,7 @@ client.on("guildMemberRemove", async (member) => {
             ]
         })
     } catch(error) {
-        console.log(error)
+        logger.error(error)
         return;
     }
 })
