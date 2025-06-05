@@ -4,7 +4,7 @@
   "description": "bot social",
   "main": "shards.js",
   "scripts": {
-    "test": "node /source/main.js"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -35,5 +35,8 @@
     "node-fetch": "^2.6.1",
     "quick.db": "^9.1.7",
     "star-labs": "^1.1.2"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
   }
 }
