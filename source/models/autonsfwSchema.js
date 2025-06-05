@@ -3,10 +3,10 @@ const mongoose = require ('mongoose');
 
 const autonsfwSchema = new mongoose.Schema({
     
-    idserver: { type: String, require: true, unique: true },
-    idcanal: { type: String, require: true  },
-    intervalo: { type: Number, require: true, default: 1 },
-    modo: { type: Boolean, requiere: true, default: false },
+    idserver: { type: String, required: true, unique: true },
+    idcanal: { type: String, required: true  },
+    intervalo: { type: Number, required: true, default: 1 },
+    modo: { type: Boolean, required: true, default: false },
 
 })
 
