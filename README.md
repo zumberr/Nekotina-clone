@@ -42,7 +42,7 @@ Es una versión con menos cosas, la idea es recrear más no copiarla al 100%; lo
 ## Licencia
 Mientras respetes los derechos de autor de este código, no tendré problemas.
 No permito si se distribuye comercialmente sin permiso. Simplemente, si quieres usar algunos comandos, tampoco tendré problemas.
-Este proyecto es de código abierto. Puedes usar, modificar y distribuir el código bajo los términos de la licencia. (Revisa el archivo `LICENSE` para más detalles - si existe un archivo LICENSE).
+Este proyecto es de código abierto. Puedes usar, modificar y distribuir el código bajo los términos de la licencia.
 
 ## Servidor de Soporte
 Para cualquier duda, soporte, para usar los stickers o cualquier inquietud con referente a derechos de autor y demás, o si simplemente quieres charlar, únete a nuestro servidor de Discord:
