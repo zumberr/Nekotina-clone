@@ -29,6 +29,9 @@ Es una versión con menos cosas, la idea es recrear más no copiarla al 100%; lo
 *   La configuración principal se encuentra en `source/inhibitors/filter.json` (Nota: la ruta original era `src/inhibitors/filter.json`, se ha mantenido `source` según la nueva estructura). Este archivo contiene filtros y configuraciones para el comportamiento de ciertos comandos y funciones del bot. Asegúrate de revisar y ajustar este archivo según tus necesidades. Algunas cosas son requeridas y otras no tanto.
 *   Considera usar un archivo `.env` para variables sensibles como el token del bot.
 
+### Registro y monitoreo
+Se añadió un sistema de **logging** basado en [Winston](https://github.com/winstonjs/winston). Los registros se guardan en la carpeta `logs/` para facilitar la depuración.
+
 ## Uso Básico
 *   **Prefijo:** El bot responde a comandos que utilizan un prefijo. (El prefijo por defecto es `!` o puedes mencionarme para saberlo - Placeholder, ajustar si se conoce el prefijo real o cómo obtenerlo).
 *   **Comando de Ayuda:** Para descubrir todos los comandos disponibles y cómo usarlos, utiliza el comando `help`. Por ejemplo: `!help` o `s!help <nombre_del_comando>`. .

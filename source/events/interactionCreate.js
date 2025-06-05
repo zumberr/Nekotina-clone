@@ -1,5 +1,6 @@
 // Cliente General
 const client = require("../main");
+const logger = require("../logger");
 
 // MessageEmbed "discord.js"
 const { MessageEmbed } = require("discord.js");
@@ -90,7 +91,7 @@ client.on("interactionCreate", async (interaction) => {
                 })
 
                 // Devolver el error en la consola
-                return console.log(error)
+                return logger.error(error)
             }
         }
     }
@@ -119,7 +120,7 @@ client.on("interactionCreate", async (interaction) => {
             })
         
             // Devolver el error en la consola
-            return console.log(error)
+            return logger.error(error)
         }
     }
 })
