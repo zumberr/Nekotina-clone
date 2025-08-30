@@ -1,4 +1,4 @@
-const WomboDream = require('dream-api');
+// const WomboDream = require('dream-api'); // Temporarily disabled due to security vulnerability
 const fetch = require('node-fetch')
 const { MessageEmbed } = require("discord.js");
 module.exports = {
@@ -54,6 +54,16 @@ module.exports = {
 
 
 
+        // Temporarily disabled due to security vulnerability in dream-api
+        return interaction.followUp({
+            embeds: [new MessageEmbed()
+                .setColor('#fbd9ff')
+                .setTitle('Función temporalmente deshabilitada')
+                .setDescription('La función de generación de imágenes está temporalmente deshabilitada por motivos de seguridad. Se reactivará pronto con una nueva implementación.')
+            ]
+        });
+
+        /* Original code commented out due to security vulnerability
         let image = await WomboDream.generateImage(sty, query);
 
         //console.log(query)
@@ -66,6 +76,7 @@ module.exports = {
         .setTimestamp()
 
         interaction.channel.send({embeds:[embed]})
+        */
 
 
 

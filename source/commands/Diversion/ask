@@ -12,34 +12,43 @@ module.exports = {
     description: "preguntame lo que sea , estoy para ayudarte",
     async run(client, message, args, prefix) {
    try {
-     const prompt = args.join(" ");join(" ");
+     const prompt = args.join(" ");
      if (!prompt) {
         return message.reply("No puedes hacer preguntas ala IA si no tienes nada que preguntar");
      };
 
-     const { akemi } = require("gpti");
+     const { gpt } = require("gpti");
 
-     akemi.v1({
-         prompt: prompt,
-         model: "GPT-4",
+     // Send loading message
+     const loadingMessage = await message.reply("Procesando tu pregunta...");
+
+     gpt.v1({
+         messages: [
+             {
+                 role: "user",
+                 content: prompt
+             }
+         ],
          markdown: false
      }, (err, data) => {
          if(err != null){
              console.log(err);
+             loadingMessage.edit("Ha ocurrido un error al procesar tu pregunta.");
          } else {
              console.log(data);
+             const embed = new MessageEmbed()
+             .setAuthor(client.user.tag, client.user.displayAvatarURL({
+                 dynamic: true
+             }))
+             .setTitle("Aca esta tu respuesta")
+             .setColor("BLUE")
+             .setDescription(data.gpt || data.content || "No se pudo obtener una respuesta.")
+             .setFooter("sallyAI")
+             
+             loadingMessage.edit({ embeds: [embed] });
          }
-   }); 
-         
-         const embed = new MessageEmbed()
-         .setAuthor(client.user.tag, client.user.displayAvatarURL({
-             dynamic: true
-         }))
-         .setTitle("Aca esta tu respuesta")
-         .setColor("BLUE")
-         .setDescription(data)
-         .setFooter("sallyAI")
-    } catch (error) {
+     }); 
+   } catch (error) {
        console.log(`${error} || ${this.name} || ${message} || ${message.author} || ${message.guild.name}`)
         }
     }

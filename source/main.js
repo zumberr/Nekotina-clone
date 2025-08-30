@@ -33,11 +33,10 @@ mongoose
 
   });
   ///iniciando la IA
-   const { akemi } = require("gpti");
+   const { gpt } = require("gpti");
 
-   akemi(require("./inhibitors/filter.json")["Configuracion General"].userAI, require("./inhibitors/filter.json")["Configuracion General"].nxAI);
-
-   if(!akemi){
+   // Updated to use new gpti API
+   if(!gpt){
      logger.warn("no llenaste la api de gpti , esto no permitira usar algunas opciones del bot")
    }
    ///configuracion de la IA
@@ -65,7 +64,8 @@ mongoose
 
 /// puedes entrenar el modelo --- actualizacion: si lo vas a hacer largo envia todo en base64 
   ];
-  akemi.v1({
+  /* Temporarily disabled due to API changes
+  gpt.v1({
     messages: history,
     markdown: false
     }, (err, data) => {
@@ -75,6 +75,7 @@ mongoose
         logger.info(data);
     }
 });
+*/
 
   /// BETA DEL AUTOMOD POR IA
 
