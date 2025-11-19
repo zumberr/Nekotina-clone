@@ -44,6 +44,107 @@ const usersSchema = new mongoose.Schema({
     crep: { type: Date, required: true, default: Date.now },
     ck: { type: Number, required: true, default: 0 },
 
+    // ==================== SISTEMA DE CASINO ====================
+    // Estadísticas generales de casino
+    casinoStats: {
+        totalApostado: { type: Number, default: 0 },
+        totalGanado: { type: Number, default: 0 },
+        totalPerdido: { type: Number, default: 0 },
+        mejorRacha: { type: Number, default: 0 },
+        rachaActual: { type: Number, default: 0 },
+        mayorMultiplicador: { type: Number, default: 0 },
+        mayorGanancia: { type: Number, default: 0 },
+        volumenTotal: { type: Number, default: 0 },
+        volumenPorJuego: { type: Map, of: Number, default: {} },
+        apuestasPorJuego: { type: Map, of: Number, default: {} },
+        rakeback: { type: Number, default: 0 },
+        nivelVIP: { type: Number, default: 0 },
+    },
+
+    // Server seed para provably fair (se hashea y muestra al usuario)
+    serverSeed: { type: String, default: null },
+    nonce: { type: Number, default: 0 },
+
+    // Juego activo de Mines (permite continuar partidas)
+    minesGame: {
+        activo: { type: Boolean, default: false },
+        apuesta: { type: Number, default: 0 },
+        cantidadMinas: { type: Number, default: 0 },
+        tablero: [{ type: Number }], // Posiciones de las minas
+        reveladas: [{ type: Number }], // Casillas reveladas
+        multiplicadorActual: { type: Number, default: 1 },
+        serverSeed: { type: String, default: null },
+        nonce: { type: Number, default: 0 },
+    },
+
+    // ==================== SISTEMA DE TRADING ====================
+    tradingData: {
+        // Acciones (stocks ficticios)
+        stocks: {
+            type: Map,
+            of: {
+                cantidad: { type: Number },
+                precioPromedio: { type: Number },
+            },
+            default: {},
+        },
+
+        // Criptomonedas
+        crypto: {
+            type: Map,
+            of: {
+                cantidad: { type: Number },
+                precioPromedio: { type: Number },
+            },
+            default: {},
+        },
+
+        // Opciones activas (calls/puts)
+        opciones: [{
+            tipo: { type: String }, // 'call' o 'put'
+            activo: { type: String }, // ticker
+            tipoActivo: { type: String }, // 'stock' o 'crypto'
+            monto: { type: Number },
+            prima: { type: Number },
+            precioInicial: { type: Number },
+            multiplicador: { type: Number },
+            duracion: { type: Number },
+            fechaCreacion: { type: Date },
+            fechaExpiracion: { type: Date },
+            activa: { type: Boolean },
+            resultado: {
+                gano: { type: Boolean },
+                precioFinal: { type: Number },
+                cambioPorcentual: { type: Number },
+                ganancia: { type: Number },
+                timestamp: { type: Date },
+            },
+        }],
+
+        // Historial de trades
+        historial: [{
+            tipo: { type: String }, // 'compra' o 'venta'
+            activo: { type: String },
+            tipoActivo: { type: String },
+            cantidad: { type: Number },
+            precio: { type: Number },
+            total: { type: Number },
+            ganancia: { type: Number },
+            timestamp: { type: Date },
+        }],
+
+        // Estadísticas
+        stats: {
+            tradesTotal: { type: Number, default: 0 },
+            tradesGanadores: { type: Number, default: 0 },
+            gananciaTotal: { type: Number, default: 0 },
+            perdidaTotal: { type: Number, default: 0 },
+            mejorTrade: { type: Number, default: 0 },
+            peorTrade: { type: Number, default: 0 },
+            volumenTotal: { type: Number, default: 0 },
+        },
+    },
+
 })
 
 const model = mongoose.model('Usuarios', usersSchema);
