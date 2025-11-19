@@ -127,7 +127,7 @@ module.exports = {
                 .setAuthor({ name: "MI LISTA DE COMANDOS" })
                 .setDescription(`⪩⪨ • Actualmente cuento con \` ${client.commands.size - 4} \` comandos prefix y Slash Commands.\nPara ver mis comandos por categoría, utiliza el selector.\nEn caso de querer información específica sobre algún comando, puede utilizar:\n ${prefix}help <comando> `)
                 .addField("Categorías", "<:configuracion:1058449746387271741> Configuración ♡ \n<:diversion:1058449514949787748> Diversión ♡\n<:economia:1058447554460799037> Economía ♡\n<:sus:1058446947675017307> Información ♡\n<:pat:1058447923190452316> Interacción ♡\n<:moderacion:1058446616937369611> Moderación ♡\n<:musica:1058446855299661844> Música ♡\n<:utilidades:1058447032970379364> Utilidades ♡\n<:sistemxp:1058447225589596261> Sistema XP ♡")
-                     .setFooter("© Lenita Help") 
+                     .setFooter("© Sally Help") 
             ], components: [row]
         })
 
@@ -143,7 +143,7 @@ module.exports = {
                     .setAuthor({ name: "Categoría: Configuración" })
                     .setDescription(`En esta categoría podrás personalizar mi uso en tu servidor.\nEn caso de querer obtener información sobre algun comando, puede utilizar:\n\` ${prefix}help <comando> \``)
                     .addField("<:configuracion:1058449746387271741> Comandos", `${config}`)
-                             .setFooter("© Lenita Help") 
+                             .setFooter("© Sally Help") 
                     ], components: [row]
                 })
             }
@@ -159,7 +159,7 @@ module.exports = {
                     .setAuthor({ name: "Categoría: Diversión" })
                     .setDescription(`Diviértete jugando a minijuegos conmigo o con miembros del servidor.\nEn caso de querer obtener información sobre algun comando, puede utilizar:\n\` ${prefix}help <comando> \``)
                     .addField("<:diversion:1058449514949787748> Comandos", `${fun}`)
-                             .setFooter("© Lenita Help") 
+                             .setFooter("© Sally Help") 
                     ], components: [row]
                 })
             }
@@ -173,9 +173,9 @@ module.exports = {
                     embeds: [new MessageEmbed()
                     .setColor("#fbd9ff")
                     .setAuthor({ name: "Categoría: Economía" })
-                    .setDescription(`Sistema global de EcoLenita.\nEn caso de querer obtener información sobre algun comando, puede utilizar:\n\` ${prefix}help <comando> \``)
+                    .setDescription(`Sistema global de EcoSally.\nEn caso de querer obtener información sobre algun comando, puede utilizar:\n\` ${prefix}help <comando> \``)
                     .addField("<:economia:1058447554460799037> Comandos", `${eco}`)
-                             .setFooter("© Lenita Help") 
+                             .setFooter("© Sally Help") 
                     ], components: [row]
                 })
             }
@@ -190,7 +190,7 @@ module.exports = {
                     .setAuthor({ name: "Categoría: Información" })
                     .setDescription(`Investigo la información que requieras para fácil acceso.\nEn caso de querer obtener información sobre algun comando, puede utilizar:\n\` ${prefix}help <comando> \``)
                     .addField("<:sus:1058446947675017307> Comandos", `${info}`)
-                             .setFooter("© Lenita Help") 
+                             .setFooter("© Sally Help") 
                     ], components: [row]
                 })
             }
@@ -205,7 +205,7 @@ module.exports = {
                     .setAuthor({ name: "Categoría: Interacción" })
                     .setDescription(`Vuelve tus conversaciones más entretenidas reaccionando con gifs de anime e interactuando con miembros del servidor.\nEn caso de querer obtener información sobre algun comando, puede utilizar:\n\` ${prefix}help <comando> \``)
                     .addField("<:pat:1058447923190452316> Comandos", `${inte}`)
-                             .setFooter("© Lenita Help") 
+                             .setFooter("© Sally Help") 
                     ], components: [row]
                 })
             }
@@ -220,7 +220,7 @@ module.exports = {
                     .setAuthor({ name: "Categoría: Moderación" })
                     .setDescription(`Puedo ayudarte a moderar tu servidor realizando funciones básicas.\nEn caso de querer obtener información sobre algun comando, puede utilizar:\n\` ${prefix}help <comando> \``)
                     .addField("<:moderacion:1058446616937369611> Comandos", `${mod}`)
-                             .setFooter("© Lenita Help") 
+                             .setFooter("© Sally Help") 
                     ], components: [row]
                 })
             }
@@ -235,7 +235,7 @@ module.exports = {
                     .setAuthor({ name: "Categoría: Música" })
                     .setDescription(`Únete a un canal de voz y reproduzco lo que quieras escuchar!\nEn caso de querer obtener información sobre algun comando, puede utilizar:\n\` ${prefix}help <comando> \``)
                     .addField("<:musica:1058446855299661844> Comandos", `${music}`)
-                             .setFooter("© Lenita Help") 
+                             .setFooter("© Sally Help") 
                     ], components: [row]
                 })
             }
@@ -250,7 +250,7 @@ module.exports = {
                     .setAuthor({ name: "Categoría: Utilidades" })
                     .setDescription(`Algunas herramientas extras que te pueden servir.\nEn caso de querer obtener información sobre algun comando, puede utilizar:\n\` ${prefix}help <comando> \``)
                     .addField("<:utilidades:1058447032970379364> Comandos", `${utility}`)
-                             .setFooter("© Lenita Help") 
+                             .setFooter("© Sally Help") 
                     ], components: [row]
                 })
             }
@@ -265,7 +265,7 @@ module.exports = {
                     .setAuthor({ name: "Categoría: Sistema XP" })
                     .setDescription(`Configura y personaliza el sistema de XP de tu servidor.\nEn caso de querer obtener información sobre algun comando, puede utilizar:\n\` ${prefix}help <comando> \``)
                     .addField("<:sistemxp:1058447225589596261> Comandos", `${xp}`)
-                             .setFooter("© Lenita Help") 
+                             .setFooter("© Sally Help") 
                     ], components: [row]
                 })
             }

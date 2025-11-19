@@ -119,7 +119,7 @@ module.exports = {
         const slash = new Slash({
         type: args,
         interaction: interaction,
-        embedFooter: "© Lenita Anime", //The Footer of the embed
+        embedFooter: "© Sally Anime", //The Footer of the embed
         embedTitle: `aqui esta tu ${args} GIF`, //The title of the embed
         embedColor: "#FF0000", //The color of the embed! (Use Hex codes or use the color name)
         })

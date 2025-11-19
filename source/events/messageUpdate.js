@@ -24,7 +24,7 @@ client.on("messageUpdate", async (oldMessage, newMessage, message, user) => {
             .setAuthor({ name: `Se ha editado un mensaje en ${oldMessage.channel.name}`, url: `${oldMessage.url}` })
             .setDescription(`Antiguo contenido del mensaje: ${oldMessage.content || "El formato del contenido no es válido"}\nNuevo contenido del mensaje: ${newMessage.content || "El formato del contenido no es válido"}`)
             .addField("Información Extra", `Autor del mensaje: ${oldMessage.member}\nIdentificación del mensaje: ${oldMessage.id} | ${newMessage.id}\nFecha de envio del mensaje: ${oldMessage.createdAt} || <t:${Math.floor(oldMessage.createdAt / 10000)}:R>`)
-                     .setFooter('© Lenita logs')
+                     .setFooter('© Sally logs')
             ]
         })
     } catch(error) {

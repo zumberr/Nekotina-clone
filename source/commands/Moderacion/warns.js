@@ -166,7 +166,7 @@ module.exports = {
       const embed = new MessageEmbed()
         .setDescription("**Ha ocurrido un error que no tendría que ocurrir, por favor reportalo en mi servidor de soporte!**")
         .setColor("FF0000")
-        .setFooter("Lenita errores")
+        .setFooter("Sally errores")
         .setTimestamp()
       message.channel.send({ embeds: [embed] }) // finalmente
       const ae = new MessageEmbed()
@@ -179,7 +179,7 @@ module.exports = {
       .addField("🌐 Región del servidor ", "`"+message.guild.region+"`",true)
       .addField("🆔 Id del servidor ", "`"+message.guild.id+"`",true)
       .setTitle("❗ Nuevo Error ❗")
-      .setFooter("Lenita errores")
+      .setFooter("Sally errores")
       .setColor("RANDOM")
       .setTimestamp()
       .setThumbnail(message.author.avatarURL())

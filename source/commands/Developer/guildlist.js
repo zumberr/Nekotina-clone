@@ -4,7 +4,7 @@ const { MessageEmbed } = require("discord.js");
 module.exports = {
         name: 'guildlist',
         category: 'Developer',
-        description: 'Lista de los servidores donde esta Lenita.',
+        description: 'Lista de los servidores donde esta Sally.',
         ownerOnly: true,
     async run(client, message, args, prefix) {
         try {
