@@ -166,6 +166,10 @@ client.on("messageCreate", message => {
     // Modulo de Exportacion
     module.exports = client;
 
+    // Inicializar el gestor de música
+    const { initMusicManager } = require("./utils/musicManager");
+    client.manager = initMusicManager(client);
+
     // Exportaciones
      //// discord player
     // Coleccion de los comandos completa
@@ -208,6 +212,10 @@ client.on("messageCreate", message => {
     ["command", "integer", "interaction"].forEach(handler => {
       require(`./arguments/${handler}`)(client);
     }),
+
+    // Evento para manejar actualizaciones de voz (necesario para Lavalink)
+    client.on("raw", (d) => client.manager.updateVoiceState(d));
+
     // Gateway Discord v9 Login config
    client.login(config) ///token de lena
   };

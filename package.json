@@ -28,6 +28,8 @@
     "chalk": "^5.6.0",
     "discord.js": "^13.17.1",
     "dotenv": "^16.4.5",
+    "erela.js": "^2.4.0",
+    "erela.js-spotify": "^1.2.0",
     "express": "^5.1.0",
     "gpti": "^2.1.8",
     "isomorphic-unfetch": "^4.0.2",
