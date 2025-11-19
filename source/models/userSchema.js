@@ -77,6 +77,74 @@ const usersSchema = new mongoose.Schema({
         nonce: { type: Number, default: 0 },
     },
 
+    // ==================== SISTEMA DE TRADING ====================
+    tradingData: {
+        // Acciones (stocks ficticios)
+        stocks: {
+            type: Map,
+            of: {
+                cantidad: { type: Number },
+                precioPromedio: { type: Number },
+            },
+            default: {},
+        },
+
+        // Criptomonedas
+        crypto: {
+            type: Map,
+            of: {
+                cantidad: { type: Number },
+                precioPromedio: { type: Number },
+            },
+            default: {},
+        },
+
+        // Opciones activas (calls/puts)
+        opciones: [{
+            tipo: { type: String }, // 'call' o 'put'
+            activo: { type: String }, // ticker
+            tipoActivo: { type: String }, // 'stock' o 'crypto'
+            monto: { type: Number },
+            prima: { type: Number },
+            precioInicial: { type: Number },
+            multiplicador: { type: Number },
+            duracion: { type: Number },
+            fechaCreacion: { type: Date },
+            fechaExpiracion: { type: Date },
+            activa: { type: Boolean },
+            resultado: {
+                gano: { type: Boolean },
+                precioFinal: { type: Number },
+                cambioPorcentual: { type: Number },
+                ganancia: { type: Number },
+                timestamp: { type: Date },
+            },
+        }],
+
+        // Historial de trades
+        historial: [{
+            tipo: { type: String }, // 'compra' o 'venta'
+            activo: { type: String },
+            tipoActivo: { type: String },
+            cantidad: { type: Number },
+            precio: { type: Number },
+            total: { type: Number },
+            ganancia: { type: Number },
+            timestamp: { type: Date },
+        }],
+
+        // Estadísticas
+        stats: {
+            tradesTotal: { type: Number, default: 0 },
+            tradesGanadores: { type: Number, default: 0 },
+            gananciaTotal: { type: Number, default: 0 },
+            perdidaTotal: { type: Number, default: 0 },
+            mejorTrade: { type: Number, default: 0 },
+            peorTrade: { type: Number, default: 0 },
+            volumenTotal: { type: Number, default: 0 },
+        },
+    },
+
 })
 
 const model = mongoose.model('Usuarios', usersSchema);
