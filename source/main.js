@@ -1,16 +1,19 @@
- ///Vaciar la Consola al iniciar
- console.clear()
+///Vaciar la Consola al iniciar
+console.clear()
 
- // Logger
- const logger = require('./logger');
+// Cargar variables de entorno
+require('dotenv').config();
 
- // Funcion para ejecutar
- function start() {
+// Logger
+const logger = require('./logger');
+
+// Funcion para ejecutar
+function start() {
     // Definir "discord.js"
     const { Client, Collection } = require("discord.js");
     // Base de datos general
     const Database = require("quick.db");
-    const mongo = require("./inhibitors/filter.json")["Configuracion General"].mongo_uri
+    const mongo = process.env.MONGO_URI || "";
 
     const mongoose = require ('mongoose');
 
@@ -129,8 +132,15 @@ client.on("messageCreate", message => {
     // Expancion de "Node.js"
     require("events").defaultMaxListeners = 55;
 
-    // Configuracion
-    const config = require("./inhibitors/filter.json")["Configuracion General"].token;
+    // Configuracion desde variables de entorno
+    const config = process.env.DISCORD_TOKEN;
+
+    // Verificar que el token esté configurado
+    if (!config) {
+        logger.error("ERROR: No se ha configurado el token del bot.");
+        logger.error("Por favor, crea un archivo .env con DISCORD_TOKEN=tu_token_aqui");
+        process.exit(1);
+    }
 
     // Configuracion del Cliente en General
     const client = new Client({
@@ -172,8 +182,18 @@ client.on("messageCreate", message => {
     client.database = Database
     // SlashCommands
     client.scommands = new Collection();
-    // Configuracion (OWNERID)
-    client.config = require("./inhibitors/filter.json")["Configuracion General"];
+    // Configuracion (OWNERID y otras configuraciones)
+    client.config = {
+        token: process.env.DISCORD_TOKEN,
+        prefix: process.env.PREFIX || "!",
+        OWNERID: process.env.OWNER_IDS ? process.env.OWNER_IDS.split(',') : [],
+        OSU_KEY: process.env.OSU_KEY || "",
+        giphyAPIKey: process.env.GIPHY_API_KEY || "",
+        somerandomapi: process.env.SOMERANDOM_API || "",
+        mongo_uri: process.env.MONGO_URI || "",
+        userAI: process.env.USER_AI || "https://nexra.aryahcr.cc/",
+        nxAI: process.env.NX_AI || "https://nexra.aryahcr.cc/"
+    };
 
     // Categorias
     client.categories = fs.readdirSync("./source/commands/");

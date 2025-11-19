@@ -28,12 +28,7 @@ module.exports = {
         let request = require(`../Economia/${command}`)
         return `\`${request.name}\``
     }).join(" ")
-    
-        const est = readdirSync("./source/commands/Estudios/").filter((file) => file.endsWith(".js")).map((command) => {
-        let request = require(`../Estudios/${command}`)
-        return `\`${request.name}\``
-    }).join(" ")
-        
+
     const info = readdirSync("./source/commands/Informacion/").filter((file) => file.endsWith(".js")).map((command) => {
         const request = require(`../Informacion/${command}`)
         return `\`${request.name}\``
@@ -87,12 +82,6 @@ module.exports = {
                 emoji: "<:economia:1058447554460799037>",
                 value: "economyhelp"
             },
-                                {
-                label: "Estudios",
-                description: "Te ayudo a estudiar.",
-                emoji: "<:estudios:1058447682542239804>",
-                value: "esthelp"
-            },
             {
                 label: "Información",
                 description: "Comandos de Información.",
@@ -137,7 +126,7 @@ module.exports = {
                 .setColor("#fbd9ff")
                 .setAuthor({ name: "MI LISTA DE COMANDOS" })
                 .setDescription(`⪩⪨ • Actualmente cuento con \` ${client.commands.size - 4} \` comandos prefix y Slash Commands.\nPara ver mis comandos por categoría, utiliza el selector.\nEn caso de querer información específica sobre algún comando, puede utilizar:\n ${prefix}help <comando> `)
-                .addField("Categorías", "<:configuracion:1058449746387271741> Configuración ♡ \n<:diversion:1058449514949787748> Diversión ♡\n<:economia:1058447554460799037> Economía ♡\n<:estudios:1058447682542239804> Estudios ♡\n<:sus:1058446947675017307> Información ♡\n<:pat:1058447923190452316> Interacción ♡\n<:moderacion:1058446616937369611> Moderación ♡\n<:musica:1058446855299661844> Música ♡\n<:utilidades:1058447032970379364> Utilidades ♡\n<:sistemxp:1058447225589596261> Sistema XP ♡")
+                .addField("Categorías", "<:configuracion:1058449746387271741> Configuración ♡ \n<:diversion:1058449514949787748> Diversión ♡\n<:economia:1058447554460799037> Economía ♡\n<:sus:1058446947675017307> Información ♡\n<:pat:1058447923190452316> Interacción ♡\n<:moderacion:1058446616937369611> Moderación ♡\n<:musica:1058446855299661844> Música ♡\n<:utilidades:1058447032970379364> Utilidades ♡\n<:sistemxp:1058447225589596261> Sistema XP ♡")
                      .setFooter("© Lenita Help") 
             ], components: [row]
         })
@@ -191,22 +180,7 @@ module.exports = {
                 })
             }
         })
-    
-                    collector.on("collect", async (i) => {
-                if(i.values[0] === "esthelp") {
-                await i.deferUpdate()
-                i.editReply({
-                    embeds: [new MessageEmbed()
-                    .setColor("#fbd9ff")
-                    .setAuthor({ name: "Categoría: Estudios" })
-                    .setDescription(`Te ayudo a estudiar y automatizo tus búsquedas, incluso puedes aprender inglés junto a mí!\nEn caso de querer obtener información sobre algun comando, puede utilizar:\n\` ${prefix}help <comando> \``)
-                    .addField("<:estudios:1058447682542239804> Comandos", `${est}`)
-                             .setFooter("© Lenita Help") 
-                    ], components: [row]
-                })
-            }
-        })
-    
+
             collector.on("collect", async (i) => {
                 if(i.values[0] === "infohelp") {
                 await i.deferUpdate()
