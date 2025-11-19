@@ -44,6 +44,39 @@ const usersSchema = new mongoose.Schema({
     crep: { type: Date, required: true, default: Date.now },
     ck: { type: Number, required: true, default: 0 },
 
+    // ==================== SISTEMA DE CASINO ====================
+    // Estadísticas generales de casino
+    casinoStats: {
+        totalApostado: { type: Number, default: 0 },
+        totalGanado: { type: Number, default: 0 },
+        totalPerdido: { type: Number, default: 0 },
+        mejorRacha: { type: Number, default: 0 },
+        rachaActual: { type: Number, default: 0 },
+        mayorMultiplicador: { type: Number, default: 0 },
+        mayorGanancia: { type: Number, default: 0 },
+        volumenTotal: { type: Number, default: 0 },
+        volumenPorJuego: { type: Map, of: Number, default: {} },
+        apuestasPorJuego: { type: Map, of: Number, default: {} },
+        rakeback: { type: Number, default: 0 },
+        nivelVIP: { type: Number, default: 0 },
+    },
+
+    // Server seed para provably fair (se hashea y muestra al usuario)
+    serverSeed: { type: String, default: null },
+    nonce: { type: Number, default: 0 },
+
+    // Juego activo de Mines (permite continuar partidas)
+    minesGame: {
+        activo: { type: Boolean, default: false },
+        apuesta: { type: Number, default: 0 },
+        cantidadMinas: { type: Number, default: 0 },
+        tablero: [{ type: Number }], // Posiciones de las minas
+        reveladas: [{ type: Number }], // Casillas reveladas
+        multiplicadorActual: { type: Number, default: 1 },
+        serverSeed: { type: String, default: null },
+        nonce: { type: Number, default: 0 },
+    },
+
 })
 
 const model = mongoose.model('Usuarios', usersSchema);
