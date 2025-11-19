@@ -1,4 +1,4 @@
-# Configuración del Bot Nekotina
+# Configuración del Bot 
 
 ## Requisitos Previos
 
