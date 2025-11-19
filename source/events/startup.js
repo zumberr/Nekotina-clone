@@ -5,7 +5,7 @@ const chalk = require("chalk");
 // Realizar al iniciar
 client.on("ready", () => {
     // Console Logger
-    logger.info(`Lenita se ha iniciado correctamente`);
+    logger.info(`Sally se ha iniciado correctamente`);
     
     client.user.setActivity({ name: `discord.gg/seelyrandom! | !help`, type: "LISTENING" });
     ///

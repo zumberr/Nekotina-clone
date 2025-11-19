@@ -32,7 +32,7 @@ Autor del mensaje editado: ${edited.author}
 Antiguo contenido del mensaje editado: ${edited.oldContent || "El formato del mensaje no es valido."}
 Nuevo contenido del mensaje editado: ${edited.newContent || "El formato del mensaje no es valido."}
 Mensaje editado hace: <t:${edited.timestamp}:R>`)
-         .setFooter('© Lenita snipe')
+         .setFooter('© Sally snipe')
         if(edited.image) snipe.setImage(edited.image);
         return message.reply({ embeds: [snipe] });
     } catch(error) {

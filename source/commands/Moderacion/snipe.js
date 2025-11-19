@@ -29,7 +29,7 @@ module.exports = {
         .setDescription(`Autor del mensaje eliminado: ${deleted.author}
 Contenido del mensaje eliminado: ${deleted.content || "El mensaje eliminado no tiene contenido."}
 Mensaje eliminado hace: <t:${deleted.timestamp}:R>`)
-        .setFooter('© Lenita snipe')
+        .setFooter('© Sally snipe')
         if(deleted.image) snipe.setImage(deleted.image);
         return message.reply({ embeds: [snipe] });
     } catch(error) {

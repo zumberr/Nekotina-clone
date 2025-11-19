@@ -14,7 +14,7 @@ client.on("messageDelete", async (message) => {
             .setAuthor({ name: `Se ha eliminado un mensaje en ${message.channel.name}` })
             .setDescription(`Contenido del mensaje: ${message.content || "El formato del contenido no es válido"}`)
             .addField("Información Extra", `Autor del mensaje: ${message.member}\nIdentificación del mensaje: ${message.id}\nFecha de envio del mensaje: ${message.createdAt} || <t:${Math.floor(message.createdAt / 1000)}:R>`)
-                     .setFooter('© Lenita logs')
+                     .setFooter('© Sally logs')
             ]
         })
     } catch(error) {

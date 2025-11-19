@@ -67,7 +67,7 @@ module.exports = {
 
         let logEmbed = new MessageEmbed()
         .setTitle('Advertencia eliminada')
-        .setFooter('lenita Mod Logs')
+        .setFooter('Sally Mod Logs')
         .setTimestamp()
         .addField('Staff', `<@${message.author.id}>`, true)
         .addField('Miembro', `${user ? `<@${user.id}>` : 'No encontrado'}`)
@@ -88,7 +88,7 @@ module.exports = {
             "**Ha ocurrido un error que no tendría que ocurrir, Porfavor reportalo a traves de mi dm**"
           )
           .setColor(process.env.EMBED_HEX.toString())
-          .setFooter("lenita moderacion")
+          .setFooter("Sally moderacion")
           .setThumbnail(client.user.avatarURL())
           .setTimestamp();
         message.channel.send({ embeds: [embed] }); // finalmente
@@ -127,7 +127,7 @@ module.exports = {
           )
           .addField("🆔 Id del servidor ", "`" + message.guild.id + "`", true)
           .setTitle("❗ Nuevo Error ❗")
-          .setFooter("lenita | lenita erorres")
+          .setFooter("Sally | Sally erorres")
           .setColor("RANDOM")
           .setTimestamp()
           .setThumbnail(message.author.avatarURL());
