@@ -19,6 +19,24 @@ const usersSchema = new mongoose.Schema({
     dinero: { type: Number, required: true, default: 0 },
     banco: { type: Number, required: true, default: 0 },
     total: { type: Number, required: true, default: 0 },
+
+    // Sistema de Tokens Premium (Gemas)
+    gemas: { type: Number, required: true, default: 0 },
+
+    // Sistema de Staking (Inversiones)
+    stakes: [{
+        cantidad: { type: Number, required: true },
+        periodo: { type: Number, required: true }, // 1, 3, 7 días
+        apy: { type: Number, required: true }, // Porcentaje de retorno
+        fechaInicio: { type: Date, required: true },
+        fechaVencimiento: { type: Date, required: true },
+        activo: { type: Boolean, required: true, default: true }
+    }],
+
+    // Configuración de Banco
+    capacidadBanco: { type: Number, required: true, default: 10000 }, // Límite inicial del banco
+
+    // Cooldowns
     work: { type: Date, required: true, default: Date.now },
     crime: { type: Date, required: true, default: Date.now },
     rob: { type: Date, required: true, default: Date.now },
