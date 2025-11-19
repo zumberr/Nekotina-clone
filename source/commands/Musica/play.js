@@ -1,5 +1,5 @@
-const { EmbedBuilder } = require("discord.js");
-const { checkVC } = require("../../util/checkVC");
+const { MessageEmbed } = require("discord.js");
+const { checkVoiceChannel } = require("../../utils/musicManager");
 
 module.exports = {
     name: "play",
@@ -10,196 +10,146 @@ module.exports = {
     cooldown: 3,
 
     /**
-     * @param {import("../../types").ClientExt} Este es el cliente
-     * @param {import("discord.js").Message} importamos de la libreria
-     * @param {string[]} args
+     * @param {import("../../types").ClientExt} client - Cliente de Discord
+     * @param {import("discord.js").Message} message - Mensaje de Discord
+     * @param {string[]} args - Argumentos del comando
      */
     async execute(client, message, args) {
         // Verificar conexión a canal de voz
-        const vcCheck = await checkVC(message);
-        if (!vcCheck.status) return;
-        
-        // Validar argumentos
-        if (!args.length) {
+        const vcCheck = checkVoiceChannel(message.member);
+        if (!vcCheck.valid) {
             return message.reply({
-                embeds: [new EmbedBuilder()
-                    .setColor("Red")
-                    .setDescription(`❌ Especifica una canción o URL\nEjemplo: \`${client.prefix}play yo tengo cuatro peines\``)
+                embeds: [new MessageEmbed()
+                    .setColor("RED")
+                    .setDescription(`❌ ${vcCheck.message}`)
                 ]
             });
         }
 
-        /// esta es opcional pero no falta el usuario que menciona a otro y ocasiona un error a proposito
-        if (message.mentions.has()) {
+        // Validar argumentos
+        if (!args.length) {
             return message.reply({
-                embeds: [new EmbedBuilder()
-                    .setColor("Orange")
+                embeds: [new MessageEmbed()
+                    .setColor("RED")
+                    .setDescription(`❌ Especifica una canción o URL\nEjemplo: \`${client.config.prefix}play despacito\``)
+                ]
+            });
+        }
+
+        // Evitar menciones
+        if (message.mentions.users.size > 0 || message.mentions.roles.size > 0) {
+            return message.reply({
+                embeds: [new MessageEmbed()
+                    .setColor("ORANGE")
                     .setDescription("⚠️ No puedes mencionar usuarios/roles como nombre de canción")
                 ]
             });
         }
 
         const query = args.join(" ");
-        const queue = client.distube.getQueue(message);
-        
+
         try {
-   
-            const song = await client.distube.play(message.member.voice.channel, query, {
-                member: message.member,
-                textChannel: message.channel,
-                message
-            });
+            // Crear o obtener el player
+            let player = client.manager.get(message.guild.id);
 
+            if (!player) {
+                player = client.manager.create({
+                    guild: message.guild.id,
+                    voiceChannel: message.member.voice.channel.id,
+                    textChannel: message.channel.id,
+                    selfDeafen: true,
+                });
+            }
 
-            await message.reply({
-                embeds: [new EmbedBuilder()
-                    .setColor("#4B0082")
-                    .setTitle("🎶 Canción añadida")
-                    .setDescription(`[${song.name}](${song.url})`)
-                    .addFields(
-                        { name: "Duración", value: song.formattedDuration, inline: true },
-                        { name: "Solicitada por", value: song.user.toString(), inline: true }
-                    )
-                    .setThumbnail(song.thumbnail)
-                ]
-            });
-            
+            // Conectar al canal de voz si no está conectado
+            if (player.state !== "CONNECTED") {
+                player.connect();
+            }
+
+            // Buscar la canción
+            const res = await client.manager.search(query, message.author);
+
+            // Verificar si se encontraron resultados
+            if (res.loadType === "NO_MATCHES" || !res.tracks.length) {
+                if (!player.queue.current) player.destroy();
+                return message.reply({
+                    embeds: [new MessageEmbed()
+                        .setColor("RED")
+                        .setDescription("🔍 No se encontraron resultados para tu búsqueda.")
+                    ]
+                });
+            }
+
+            // Agregar canciones a la cola
+            if (res.loadType === "PLAYLIST_LOADED") {
+                player.queue.add(res.tracks);
+
+                await message.reply({
+                    embeds: [new MessageEmbed()
+                        .setColor("#4B0082")
+                        .setTitle("📃 Playlist añadida")
+                        .setDescription(`**${res.playlist.name}**`)
+                        .addField("Canciones", res.tracks.length.toString(), true)
+                        .addField("Duración", formatPlaylistDuration(res.tracks), true)
+                        .addField("Solicitado por", message.author.toString(), true)
+                    ]
+                });
+            } else {
+                const track = res.tracks[0];
+                player.queue.add(track);
+
+                // Si no hay una canción reproduciéndose, no enviar mensaje (el evento trackStart lo hará)
+                if (player.playing || player.queue.size > 1) {
+                    await message.reply({
+                        embeds: [new MessageEmbed()
+                            .setColor("#4B0082")
+                            .setTitle("🎶 Canción añadida a la cola")
+                            .setDescription(`[${track.title}](${track.uri})`)
+                            .addField("Autor", track.author, true)
+                            .addField("Duración", formatDuration(track.duration), true)
+                            .addField("Posición en cola", player.queue.size.toString(), true)
+                            .setThumbnail(track.thumbnail || track.displayThumbnail("maxresdefault"))
+                        ]
+                    });
+                }
+            }
+
+            // Reproducir si no está reproduciendo
+            if (!player.playing && !player.paused && !player.queue.size) {
+                player.play();
+            }
+
         } catch (error) {
             console.error(error);
-            
-            const errorMessage = {
-                "NO_QUEUE": "❌ No hay canciones en reproducción",
-                "NO_VOICE": "🔊 Únete a un canal de voz primero",
-                "INVALID_URL": "⚠️ Enlace no válido",
-                "SEARCH_NULL": "🔍 No encontré resultados"
-            }[error.message] || "❌ Error desconocido";
-
             message.reply({
-                embeds: [new EmbedBuilder()
-                    .setColor("Red")
-                    .setDescription(errorMessage)
+                embeds: [new MessageEmbed()
+                    .setColor("RED")
+                    .setDescription(`❌ Ocurrió un error al procesar tu solicitud: ${error.message}`)
                 ]
             });
         }
     }
 };
-/*
-//////// por aca te dejo el sistema de botones si lo deseas colocar
 
+/**
+ * Formatea la duración en milisegundos a formato legible
+ */
+function formatDuration(ms) {
+    const seconds = Math.floor((ms / 1000) % 60);
+    const minutes = Math.floor((ms / (1000 * 60)) % 60);
+    const hours = Math.floor(ms / (1000 * 60 * 60));
 
- try {
-            const song = await client.distube.play(message.member.voice.channel, query, {
-                member: message.member,
-                textChannel: message.channel,
-                message
-            });
+    const hoursStr = hours > 0 ? `${hours}:` : '';
+    const minutesStr = minutes < 10 && hours > 0 ? `0${minutes}` : minutes;
+    const secondsStr = seconds < 10 ? `0${seconds}` : seconds;
 
-            const buttons = new ActionRowBuilder().addComponents(
-                new ButtonBuilder()
-                    .setCustomId('pause_resume')
-                    .setEmoji('⏯️')
-                    .setStyle(ButtonStyle.Secondary),
-                
-                new ButtonBuilder()
-                    .setCustomId('skip')
-                    .setEmoji('⏭️')
-                    .setStyle(ButtonStyle.Secondary),
-                
-                new ButtonBuilder()
-                    .setCustomId('stop')
-                    .setEmoji('⏹️')
-                    .setStyle(ButtonStyle.Danger),
-                
-                new ButtonBuilder()
-                    .setCustomId('volume_up')
-                    .setEmoji('🔊')
-                    .setStyle(ButtonStyle.Primary),
-                
-                new ButtonBuilder()
-                    .setCustomId('volume_down')
-                    .setEmoji('🔉')
-                    .setStyle(ButtonStyle.Primary)
-            );
+    return `${hoursStr}${minutesStr}:${secondsStr}`;
+}
 
-            const response = await message.reply({
-            //aca agrega el embed anteriormente
-                components: [buttons]
-            });
-
-            // Crear colector de interacciones
-            const collector = response.createMessageComponentCollector({
-                componentType: ComponentType.Button,
-                time: 300_000 // aca son 5 minutos
-            });
-
-            collector.on('collect', async interaction => {
-                if (!interaction.member.voice.channel) {
-                    return interaction.reply({ 
-                        content: '❌ Debes estar en un canal de voz!', 
-                        ephemeral: true 
-                    });
-                }
-
-                const queue = client.distube.getQueue(interaction.guild);
-                if (!queue) {
-                    return interaction.reply({ 
-                        content: '⚠️ No hay canciones reproduciéndose!', 
-                        ephemeral: true 
-                    });
-                }
-
-                try {
-                    switch(interaction.customId) {
-                        case 'pause_resume':
-                            queue.paused ? queue.resume() : queue.pause();
-                            await interaction.reply({
-                                content: `⏯️ ${queue.paused ? 'Pausado' : 'Reanudado'}`,
-                                ephemeral: true
-                            });
-                            break;
-                            
-                        case 'skip':
-                            await queue.skip();
-                            await interaction.reply({
-                                content: '⏭️ Saltando canción',
-                                ephemeral: true
-                            });
-                            break;
-                            
-                        case 'stop':
-                            await queue.stop();
-                            await interaction.reply({
-                                content: '⏹️ Deteniendo reproductor',
-                                ephemeral: true
-                            });
-                            break;
-                            
-                        case 'volume_up':
-                            queue.setVolume(queue.volume + 10);
-                            await interaction.reply({
-                                content: `🔊 Volumen: ${queue.volume}%`,
-                                ephemeral: true
-                            });
-                            break;
-                            
-                        case 'volume_down':
-                            queue.setVolume(queue.volume - 10);
-                            await interaction.reply({
-                                content: `🔉 Volumen: ${queue.volume}%`,
-                                ephemeral: true
-                            });
-                            break;
-                    }
-                } catch (error) {
-                    console.error(error);
-                    await interaction.reply({
-                        content: '❌ Error al ejecutar el comando',
-                        ephemeral: true
-                    });
-                }
-            });
-
-            collector.on('end', () => {
-                response.edit({ components: [] }).catch(console.error);
-            }); 
-*/
+/**
+ * Calcula la duración total de una playlist
+ */
+function formatPlaylistDuration(tracks) {
+    const totalMs = tracks.reduce((acc, track) => acc + track.duration, 0);
+    return formatDuration(totalMs);
+}

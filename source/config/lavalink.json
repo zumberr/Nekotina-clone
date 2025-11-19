@@ -1,0 +1,16 @@
+{
+  "nodes": [
+    {
+      "host": "lava.link",
+      "port": 80,
+      "password": "youshallnotpass",
+      "secure": false,
+      "retryAmount": 5,
+      "retryDelay": 3000
+    }
+  ],
+  "spotify": {
+    "clientID": "",
+    "clientSecret": ""
+  }
+}
