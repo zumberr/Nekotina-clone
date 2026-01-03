@@ -44,6 +44,66 @@ const usersSchema = new mongoose.Schema({
     crep: { type: Date, required: true, default: Date.now },
     ck: { type: Number, required: true, default: 0 },
 
+    // ==================== SISTEMA DE ECONOMÍA EXTENDIDO ====================
+    economy: {
+        streaks: {
+            daily: {
+                contador: { type: Number, default: 0 },
+                mejorMarca: { type: Number, default: 0 },
+                ultimaRecompensa: { type: Date, default: null },
+                reiniciosDisponibles: { type: Number, default: 1 },
+            },
+            work: {
+                contador: { type: Number, default: 0 },
+                mejorMarca: { type: Number, default: 0 },
+                ultimaRecompensa: { type: Date, default: null },
+                multiplicadorActual: { type: Number, default: 1 },
+            },
+        },
+        enganche: {
+            activos: [{
+                petId: { type: String, required: true },
+                saldoPendiente: { type: Number, required: true },
+                cuota: { type: Number, required: true },
+                cuotasRestantes: { type: Number, required: true },
+                interesTotal: { type: Number, required: true },
+                ultimaCuotaPagada: { type: Date, default: null },
+                atrasos: { type: Number, default: 0 },
+                proximaCuota: { type: Date, required: true },
+            }],
+            historial: [{
+                petId: { type: String },
+                estado: { type: String },
+                fecha: { type: Date, default: Date.now },
+                detalle: { type: String },
+            }],
+        },
+        mascotas: [{
+            petId: { type: String, required: true },
+            nombrePersonalizado: { type: String, default: null },
+            adoptadaEn: { type: Date, default: Date.now },
+            tipo: { type: String, required: true },
+            rareza: { type: String, required: true },
+            nivel: { type: Number, default: 1 },
+            experiencia: { type: Number, default: 0 },
+            hambre: { type: Number, default: 15 },
+            felicidad: { type: Number, default: 80 },
+            energia: { type: Number, default: 85 },
+            ultimaInteraccion: { type: Date, default: Date.now },
+            buffActivo: {
+                tipo: { type: String, default: null },
+                valor: { type: Number, default: 0 },
+                expira: { type: Date, default: null },
+            },
+            historial: [{
+                fecha: { type: Date, default: Date.now },
+                accion: { type: String },
+                cambio: { type: String },
+            }],
+        }],
+    },
+
+
     // ==================== SISTEMA DE CASINO ====================
     // Estadísticas generales de casino
     casinoStats: {

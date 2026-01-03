@@ -196,4 +196,101 @@ module.exports = {
         rob: 21600000,      // 6 horas
         daily: 86400000,    // 24 horas
     },
+
+    // ==================== CONFIGURACIÓN DE RECOMPENSAS ====================
+    recompensas: {
+        daily: {
+            baseMin: 3500,
+            baseMax: 5500,
+            // Multiplicadores según racha (index = día - 1, último se reutiliza)
+            multiplicadoresRacha: [1, 1.1, 1.2, 1.35, 1.5, 1.6, 1.75],
+            // Bonificaciones especiales al alcanzar hitos de días consecutivos
+            hitos: [
+                { dias: 3, bonusDinero: 2500, bonusGemas: 1 },
+                { dias: 7, bonusDinero: 6500, bonusGemas: 3 },
+                { dias: 14, bonusDinero: 15000, bonusGemas: 6 },
+                { dias: 30, bonusDinero: 50000, bonusGemas: 15 },
+            ],
+            // Probabilidad de recompensa sorpresa
+            sorpresas: {
+                probabilidad: 0.12,
+                recompensas: [
+                    { tipo: "dinero", cantidad: 5000 },
+                    { tipo: "gemas", cantidad: 2 },
+                    { tipo: "buff", efecto: "reduccionCooldownWork", duracionMs: 43200000 },
+                ],
+            },
+        },
+        work: {
+            baseMin: 1200,
+            baseMax: 2800,
+            // Multiplicadores por racha laboral
+            multiplicadoresRacha: [1, 1.05, 1.12, 1.2, 1.3, 1.45, 1.6],
+            // Profesiones con modificadores específicos
+            profesiones: [
+                { id: "dev", nombre: "Desarrollador", multiplicador: 1.35 },
+                { id: "chef", nombre: "Chef", multiplicador: 1.25 },
+                { id: "streamer", nombre: "Streamer", multiplicador: 1.4 },
+                { id: "doctor", nombre: "Doctor", multiplicador: 1.5 },
+                { id: "barista", nombre: "Barista", multiplicador: 1.15 },
+            ],
+            eventosAleatorios: [
+                { tipo: "bonus", probabilidad: 0.18, descripcion: "Cliente satisfecho deja propina", multiplicador: 1.5 },
+                { tipo: "multa", probabilidad: 0.08, descripcion: "Te retrasaste en la entrega", penalizacion: 0.4 },
+                { tipo: "loot", probabilidad: 0.05, descripcion: "Encontraste un cupón", recompensa: { tipo: "gemas", cantidad: 1 } },
+            ],
+        },
+    },
+
+    // ==================== SISTEMA DE RACHAS ====================
+    rachas: {
+        daily: {
+            resetHoras: 36, // Ventana máxima para mantener racha (24h + 12h de gracia)
+            boostMaximo: 30,
+            reiniciosPermitidos: 1,
+        },
+        work: {
+            resetHoras: 30,
+            boostMaximo: 21,
+            penalizacionFallo: 0.3, // Se resta % del multiplicador acumulado si se falla
+        },
+    },
+
+    // ==================== SISTEMA DE ENGANCHES ====================
+    enganche: {
+        pagoInicialMinimo: 0.15,      // % del precio base que se debe pagar al adoptar
+        pagoInicialMaximo: 0.4,
+        cuotasMaximas: 8,
+        interesBase: 0.08,            // Interés total aplicado al saldo restante
+        cuotaIntervaloMs: 86400000,   // Cuotas diarias
+        cuotaMinima: 600,
+        toleranciaRetrasoMs: 43200000, // 12 horas de gracia
+        penalizacionRetraso: 0.05,     // 5% adicional del saldo pendiente
+        incumplimientosParaReposesion: 2,
+    },
+
+    // ==================== SISTEMA DE MASCOTAS ====================
+    mascotas: {
+        maxMascotas: 3,
+        felicidadMax: 100,
+        hambreMax: 100,
+        energiaMax: 100,
+        decayIntervaloMs: 14400000, // Cada 4 horas
+        decayValores: {
+            hambre: 12,
+            felicidad: 8,
+            energia: 10,
+        },
+        acciones: {
+            alimentar: { costo: 250, efectoHambre: -35, efectoFelicidad: 10 },
+            jugar: { costo: 150, efectoFelicidad: 25, efectoEnergia: -15 },
+            descansar: { efectoEnergia: 30, efectoHambre: 10 },
+            bañar: { costo: 200, efectoFelicidad: 15 },
+        },
+        estados: {
+            feliz: { minimoFelicidad: 70, bonus: { multiplicadorDaily: 0.05 } },
+            hambriento: { minimoHambre: 70, penalizacion: { multiplicadorWork: 0.1 } },
+            cansado: { minimoEnergia: 30, penalizacion: { cooldownWorkExtraMs: 1800000 } },
+        },
+    },
 };
